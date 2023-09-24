@@ -2,6 +2,11 @@ This project is created with [`create-svelte`](https://github.com/sveltejs/kit/t
 
 # Web Portfolio
 
-Simple portfolio website, made in SvelteKit
+Simple portfolio website, made in SvelteKit with static generation
+
+Deployment targets:
+github-pages
+vercel
+S3 static hosting
 
 Deployment TBD: https://changxiao.me
