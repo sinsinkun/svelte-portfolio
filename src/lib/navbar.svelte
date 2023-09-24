@@ -1,9 +1,25 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
   import { page } from '$app/stores';
-  import MediaQuery from 'svelte-media-queries';
 
   import { FancyButton } from "$lib";
+  import { viewType } from "./mediaQuery";
+
+  let fullView = false;
+  viewType.subscribe(type => {
+    switch (type) {
+      case "md":
+      case "lg":
+      case "xl":
+        fullView = true;
+        break;
+      case "xs":
+      case "sm":
+      default:
+        fullView = false;
+        break;
+    }
+  })
 
   // typescript interfaces
   interface NavOption {
@@ -115,8 +131,7 @@
 
 <nav>
   <h3 class="title">Web Portfolio</h3>
-  <MediaQuery query="(min-width: 700px)" let:matches>
-    {#if matches}
+    {#if fullView}
       <!-- Desktop view -->
       <div class="navtabs">
         {#each navOptions as option (option.url)}
@@ -159,5 +174,4 @@
         </div>
       {/if}
     {/if}
-  </MediaQuery>
 </nav>

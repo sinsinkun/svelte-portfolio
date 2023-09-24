@@ -1,5 +1,24 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { Navbar, Footer } from "$lib";
+  import { winW, winH } from "$lib/mediaQuery";
+
+  // global media query listener
+  const resizeListener = (e: UIEvent) => {
+    const target = e.target as Window;
+    winW.set(target?.innerWidth || 0);
+    winH.set(target?.innerHeight || 0);
+  };
+
+  onMount(() => {
+    if (!window) return;
+    winW.set(window.innerWidth || 0);
+    winH.set(window.innerHeight || 0);
+    window.addEventListener("resize", resizeListener);
+    return () => {
+      window.removeEventListener("resize", resizeListener);
+    }
+  })
 </script>
 
 <style>
