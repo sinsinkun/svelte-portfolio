@@ -17,7 +17,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
 
-    @media (max-width: 700px) {
+    @media (max-width: 600px) {
       grid-template-columns: 1fr;
     }
   }
@@ -26,7 +26,7 @@
   }
   .col-1 {
     text-align: left;
-    @media (max-width: 700px) {
+    @media (max-width: 600px) {
       text-align: center;
       order: 2;
     }
@@ -34,7 +34,7 @@
   .col-2 {
     text-align: center;
 
-    @media (max-width: 900px) and (min-width: 700px) {
+    @media (max-width: 900px) and (min-width: 600px) {
       grid-column: 2/3;
       grid-row: 1/3;
     }
@@ -42,7 +42,7 @@
   .col-3 {
     text-align: left;
     grid-column: 1/3;
-    @media (max-width: 700px) {
+    @media (max-width: 600px) {
       text-align: center;
       grid-column: auto;
       order: 3;

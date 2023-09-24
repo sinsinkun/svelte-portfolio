@@ -20,6 +20,20 @@
     max-width: 700px;
     margin: auto;
   }
+  .section-1 {
+    padding: 10px 20px;
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    text-align: left;
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  .section-1 .img-c {
+    margin: auto;
+    max-width: 300px;
+  }
 </style>
 
 <svelte:head>
@@ -31,16 +45,55 @@
     <h1 in:fly={{ x:-50, duration:900 }}>
       About Me
     </h1>
+    <div class="section-1" in:fly={{ x:50, duration:900, delay:100 }}>
+      <div class="img-c">
+        <img width="100%" src="/assets/profile.jpg" alt="head shot"/>
+      </div>
+      <div>
+        <p>
+          I am a graduate of the University of Toronto Engineering department,
+          with a Bachelor's degree in Mechanical Engineering. I have a deep interest in
+          software design and web development. Currently I am engaged as a full time
+          Team Lead/Lead Developer at BrokerPocket Inc., a PropTech startup company focused
+          on delivering a private network of off market listings to real estate professionals
+          in Canada.
+        </p>
+        <br />
+        <p>
+          Over these last 3 years, I have developed substantially as a developer, a manager,
+          and an architect. I have learned so much about not just the process of web development,
+          but also the challenges of organizing and leading a team.
+        </p>
+        <br />
+        <p>
+          A copy of my resume is available <a href="/assets/JingChang_Xiao_Resume.pdf"><u>here</u></a>.
+          It covers in more detail my educational and professional background, as well as other skills
+          that may not be covered by this portfolio.
+        </p>
+      </div>
+    </div>
+    <br />
     <LazyWrapper>
-      <p in:fly={{ x:50, duration:900, delay:100 }}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
-        culpa qui officia deserunt mollit anim id est laborum.
-      </p>
+      <div in:fly={{ x:-50, duration:900, delay:100 }}>
+        <h2>Contact Me</h2>
+        <p>You can contact me through any of the below channels:</p>
+        <p>Email: 
+          <a href="mailto:chang.x1994@gmail.com">
+            <u>chang.x1994@gmail.com</u>
+          </a>
+        </p>
+        <p>Phone Number: 416-834-7055</p>
+        <p>Github: 
+          <a href="https://github.com/sinsinkun">
+            <u>https://github.com/sinsinkun</u>
+          </a>
+        </p>
+        <p>LinkedIn: 
+          <a href="https://www.linkedin.com/in/jingchang-xiao/">
+            <u>https://www.linkedin.com/in/jingchang-xiao/</u>
+          </a>
+        </p>
+      </div>
     </LazyWrapper>
   {/if}
 </div>
