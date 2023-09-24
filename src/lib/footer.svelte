@@ -69,7 +69,7 @@
     </div>
     <!-- ??? -->
     <div class="col-3">
-      Col 3 goes very long and this stuff doesn't really matter right about now huh what ok thanks
+      Col 3
     </div>
   </div>
 </footer>

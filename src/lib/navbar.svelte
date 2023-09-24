@@ -3,7 +3,7 @@
   import { page } from '$app/stores';
   import MediaQuery from 'svelte-media-queries';
 
-  import Button from "./fancyButton.svelte";
+  import { FancyButton } from "$lib";
 
   // typescript interfaces
   interface NavOption {
@@ -83,7 +83,7 @@
     /* note: needs to be global to share class with child component */
     margin-left: auto;
     padding: 8px;
-    background-color: var(--bg-color-2);
+    background-color: var(--bg-color-3);
   }
   .menu-icon {
     height: 30px;
@@ -121,21 +121,21 @@
       <div class="navtabs">
         {#each navOptions as option (option.url)}
           <a href={option.url}>
-            <Button class={option.active ? "tab active" : "tab"} poolColor="#fff">
+            <FancyButton class={option.active ? "tab active" : "tab"} poolColor="#fff">
               {option.title}
-            </Button>
+            </FancyButton>
           </a>
         {/each}
       </div>
     {:else}
       <!-- Mobile view -->
-      <Button class="menu-icon-container" onClick={toggleSideMenu}>
+      <FancyButton class="menu-icon-container" onClick={toggleSideMenu}>
         <img 
           src="icons/menu-hamburger.svg" 
           alt="hamburger menu"
           class="menu-icon"
         />
-      </Button>
+      </FancyButton>
       <!-- Side nav -->
       {#if sideMenuOpen}
         <div class="side-nav-container">
@@ -150,6 +150,7 @@
                 class="side-nav-option"
                 class:active={option.active}
                 in:fly={{ x:100, duration: 800, delay: i*100 }}
+                on:click={toggleSideMenu}
               >
                 {option.title}
               </a>
