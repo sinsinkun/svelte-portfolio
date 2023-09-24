@@ -58,7 +58,7 @@
       <h3 in:fly={{ x:-50, duration:900, delay:100 }}>
         Native OS
       </h3>
-      <table in:fly={{ x:-50, duration:900, delay:100 }}>
+      <table in:fly={{ x:50, duration:900, delay:100 }}>
         <!-- Header -->
         <tr>
           <th>Framework</th>
@@ -84,7 +84,7 @@
       <h3 in:fly={{ x:-50, duration:900, delay:100 }}>
         Frontend
       </h3>
-      <table in:fly={{ x:-50, duration:900, delay:100 }}>
+      <table in:fly={{ x:50, duration:900, delay:100 }}>
         <!-- Header -->
         <tr>
           <th>Framework</th>
@@ -110,7 +110,7 @@
       <h3 in:fly={{ x:-50, duration:900, delay:100 }}>
         Backend
       </h3>
-      <table in:fly={{ x:-50, duration:900, delay:100 }}>
+      <table in:fly={{ x:50, duration:900, delay:100 }}>
         <!-- Header -->
         <tr>
           <th>Framework</th>
@@ -132,7 +132,7 @@
       <h3 in:fly={{ x:-50, duration:900, delay:100 }}>
         Architecture
       </h3>
-      <table in:fly={{ x:-50, duration:900, delay:100 }}>
+      <table in:fly={{ x:50, duration:900, delay:100 }}>
         <!-- Header -->
         <tr>
           <th>Framework</th>

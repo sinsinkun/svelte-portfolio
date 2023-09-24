@@ -31,8 +31,12 @@
     }
   }
   .section-1 .img-c {
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     max-width: 300px;
+  }
+  .section-2 > * {
+    margin-bottom: 0.3em;
   }
 </style>
 
@@ -74,7 +78,7 @@
     </div>
     <br />
     <LazyWrapper>
-      <div in:fly={{ x:-50, duration:900, delay:100 }}>
+      <div class="section-2" in:fly={{ x:-50, duration:900, delay:100 }}>
         <h2>Contact Me</h2>
         <p>You can contact me through any of the below channels:</p>
         <p>Email: 
