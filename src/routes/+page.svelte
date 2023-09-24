@@ -1,16 +1,12 @@
 <script>
-  import { onDestroy, onMount } from "svelte";
+  import { onMount } from "svelte";
   import { fly } from "svelte/transition";
-  
-  import { title, resetTitle } from "$lib/globalStore";
 
   // play animation on page load
   let loaded = false;
   onMount(() => {
     loaded = true;
   })
-
-  let inView = false;
 </script>
 
 <style>
@@ -23,6 +19,10 @@
     margin: auto;
   }
 </style>
+
+<svelte:head>
+  <title>Web Portfolio</title>
+</svelte:head>
 
 <div class="content-root">
   {#if loaded}

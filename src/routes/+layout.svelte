@@ -1,10 +1,5 @@
 <script lang="ts">
   import { Navbar, Footer } from "$lib";
-  import { title } from '$lib/globalStore.ts';
-
-  // set page title from global store
-  let page_title:String;
-  title.subscribe((value:String) => page_title = value);
 </script>
 
 <style>
@@ -87,10 +82,6 @@
     }
   }
 </style>
-
-<svelte:head>
-  <title>{page_title}</title>
-</svelte:head>
 
 <Navbar />
 <main class="global-container">
