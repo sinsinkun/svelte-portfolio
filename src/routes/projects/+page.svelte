@@ -56,6 +56,32 @@
     <br />
     <LazyWrapper>
       <h3 in:fly={{ x:-50, duration:900, delay:100 }}>
+        Native OS
+      </h3>
+      <table in:fly={{ x:-50, duration:900, delay:100 }}>
+        <!-- Header -->
+        <tr>
+          <th>Framework</th>
+          <th>Examples</th>
+        </tr>
+        <!-- Body -->
+        <tr>
+          <td>Node</td>
+          <td>Examples</td>
+        </tr>
+        <tr>
+          <td>Rust</td>
+          <td>Examples</td>
+        </tr>
+        <tr>
+          <td>C#</td>
+          <td>Examples</td>
+        </tr>
+      </table>
+    </LazyWrapper>
+    <br />
+    <LazyWrapper>
+      <h3 in:fly={{ x:-50, duration:900, delay:100 }}>
         Frontend
       </h3>
       <table in:fly={{ x:-50, duration:900, delay:100 }}>
