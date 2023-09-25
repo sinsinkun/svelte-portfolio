@@ -53,6 +53,19 @@
     sideMenuOpen = !sideMenuOpen;
   }
 
+  // toggle theme
+  let theme = 'dark';
+  function toggleTheme() {
+    if (!document) return;
+    if (document.body.dataset.theme !== "light") {
+      document.body.dataset.theme = "light";
+      theme = 'light';
+    } else {
+      document.body.dataset.theme = "dark";
+      theme = 'dark';
+    }
+  }
+
 </script>
 
 <style>
@@ -117,7 +130,7 @@
     min-height: calc(100vh - 48px);
     min-width: 50vw;
     overflow-x: hidden;
-    background-color: var(--bg-color-2);
+    background-color: var(--bg-color-3);
     color: var(--color-1);
     padding-top: 16px;
   }
@@ -127,51 +140,66 @@
     padding: 12px;
     transition: 0.3s ease-out;
   }
+
+  .theme-btn {
+    background-color: transparent;
+    border: none;
+    padding-top: 4px;
+    cursor: pointer;
+  }
 </style>
 
 <nav>
   <h3 class="title">Web Portfolio</h3>
-    {#if fullView}
-      <!-- Desktop view -->
-      <div class="navtabs">
-        {#each navOptions as option (option.url)}
-          <a href={option.url}>
-            <FancyButton class={option.active ? "tab active" : "tab"} poolColor="#fff">
-              {option.title}
-            </FancyButton>
-          </a>
-        {/each}
-      </div>
+  <button class="theme-btn" on:click={toggleTheme}>
+    {#if theme === 'light'}
+      <img height="50%" src="/icons/moon.svg" alt="moon icon" />
     {:else}
-      <!-- Mobile view -->
-      <FancyButton class="menu-icon-container" onClick={toggleSideMenu}>
-        <img 
-          src="icons/menu-hamburger.svg" 
-          alt="hamburger menu"
-          class="menu-icon"
-        />
-      </FancyButton>
-      <!-- Side nav -->
-      {#if sideMenuOpen}
-        <div class="side-nav-container">
-          <div 
-            class="side-nav" 
-            in:fly={{ duration:500, x:200 }}
-            out:fly={{ duration:500, x:200 }}
-          >
-            {#each navOptions as option, i (option.url)}
-              <a 
-                href={option.url} 
-                class="side-nav-option"
-                class:active={option.active}
-                in:fly={{ x:100, duration: 800, delay: i*100 }}
-                on:click={toggleSideMenu}
-              >
-                {option.title}
-              </a>
-            {/each}
-          </div>
-        </div>
-      {/if}
+      <img height="50%" src="/icons/sun.svg" alt="sun icon" />
     {/if}
+    
+  </button>
+  {#if fullView}
+    <!-- Desktop view -->
+    <div class="navtabs">
+      {#each navOptions as option (option.url)}
+        <a href={option.url}>
+          <FancyButton class={option.active ? "tab active" : "tab"} poolColor="#fff">
+            {option.title}
+          </FancyButton>
+        </a>
+      {/each}
+    </div>
+  {:else}
+    <!-- Mobile view -->
+    <FancyButton class="menu-icon-container" onClick={toggleSideMenu}>
+      <img 
+        src="icons/menu-hamburger.svg" 
+        alt="hamburger menu"
+        class="menu-icon"
+      />
+    </FancyButton>
+    <!-- Side nav -->
+    {#if sideMenuOpen}
+      <div class="side-nav-container">
+        <div 
+          class="side-nav" 
+          in:fly={{ duration:500, x:200 }}
+          out:fly={{ duration:500, x:200 }}
+        >
+          {#each navOptions as option, i (option.url)}
+            <a 
+              href={option.url} 
+              class="side-nav-option"
+              class:active={option.active}
+              in:fly={{ x:100, duration: 800, delay: i*100 }}
+              on:click={toggleSideMenu}
+            >
+              {option.title}
+            </a>
+          {/each}
+        </div>
+      </div>
+    {/if}
+  {/if}
 </nav>

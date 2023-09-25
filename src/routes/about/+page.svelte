@@ -26,7 +26,7 @@
     grid-template-columns: 4fr 6fr;
     text-align: left;
 
-    @media (max-width: 600px) {
+    @media (max-width: 900px) {
       grid-template-columns: 1fr;
     }
   }

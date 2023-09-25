@@ -46,6 +46,20 @@
     --color-error: rgb(206, 39, 39);
   }
 
+  :global(body[data-theme='light']) {
+    --bg-color-1: rgb(224, 224, 224);
+    --bg-color-2: rgb(230, 196, 196);
+    --bg-color-3: rgb(182, 182, 214);
+    --bg-color-4: rgb(117, 116, 116);
+    --bg-color-5: rgb(68, 68, 68);
+    --color-1: rgb(0,0,0);
+    --color-1-50: rgba(0,0,0,0.5);
+    --color-2: rgb(23, 15, 134);
+    --color-3: rgb(57, 112, 214);
+    --color-4: rgb(119, 16, 16);
+    --color-5: rgb(196, 196, 196);
+  }
+
   /* Remove header margins by default */
   :global(h1, h2, h3, h4, h5, h6) {
     margin: 0;
@@ -78,10 +92,8 @@
   /* Background for main body */
   .global-container {
     position: relative;
-    background: radial-gradient(#303033 3px,transparent 4px),radial-gradient(#37383b 3px,transparent 4px),linear-gradient(#1a1a1b 4px,transparent 0),linear-gradient(45deg,transparent 74px,transparent 75px,#444549 0,#444549 76px,transparent 77px,transparent 109px),linear-gradient(-45deg,transparent 75px,transparent 76px,#444549 0,#444549 77px,transparent 78px,transparent 109px),#1a1a1b;
-    background-size: 109px 109px,109px 109px,100% 6px,109px 109px,109px 109px;
-    background-position: 54px 55px,0 0,0 0,0 0,0 0;
-    color: #fff;
+    background-color: var(--bg-color-3);
+    color: var(--color-1);
     margin: 0;
     text-align: center;
     min-height: 100vh;
@@ -100,6 +112,9 @@
     @media (max-width: 900px) {
       width: 100%;
     }
+  }
+  :global(body[data-theme='light'] .content-root) {
+    background: linear-gradient(#e6ecec22, #e6ecec88 200px, #e6ececee);
   }
 </style>
 
