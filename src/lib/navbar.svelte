@@ -173,11 +173,19 @@
   {:else}
     <!-- Mobile view -->
     <FancyButton class="menu-icon-container" onClick={toggleSideMenu}>
-      <img 
-        src="icons/menu-hamburger.svg" 
-        alt="hamburger menu"
-        class="menu-icon"
-      />
+      {#if theme === 'light'}
+        <img 
+          src="icons/menu-hamburger-black.svg" 
+          alt="hamburger menu"
+          class="menu-icon"
+        />
+      {:else}
+        <img 
+          src="icons/menu-hamburger.svg" 
+          alt="hamburger menu"
+          class="menu-icon"
+        />
+      {/if}
     </FancyButton>
     <!-- Side nav -->
     {#if sideMenuOpen}
