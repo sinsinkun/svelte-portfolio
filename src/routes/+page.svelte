@@ -28,7 +28,9 @@
 
 <div class="content-root">
   {#if loaded}
-    <div>[hero image]</div>
+    <div style="margin-top:40px">
+      <img src="/icons/shinshin_logo.svg" alt="logo" />
+    </div>
     <br />
     <h1 in:fly={{ x:-50, duration:900 }}>
       Introduction
