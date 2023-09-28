@@ -28,9 +28,7 @@
 
 <div class="content-root">
   {#if loaded}
-    <div style="margin-top:40px">
-      <img src="/icons/shinshin_logo.svg" alt="logo" />
-    </div>
+    <img src="/icons/sinsin_v3.png" alt="logo" />
     <br />
     <h1 in:fly={{ x:-50, duration:900 }}>
       Introduction
@@ -64,5 +62,7 @@
         to visit my github. I hope you enjoy my website!
       </p>
     </LazyWrapper>
+    <br />
+    <!-- TODO: more content -->
   {/if}
 </div>
