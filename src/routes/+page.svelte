@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import { fly } from "svelte/transition";
 
-  import LazyWrapper from "$lib/lazyWrapper.svelte";
+  import { DragDrop, LazyWrapper } from "$lib";
 
   // play animation on page load
   let loaded = false;
@@ -17,7 +17,15 @@
   }
   p {
     width: 90%;
-    max-width: 700px;
+    max-width: 800px;
+    margin: auto;
+  }
+  .link {
+    text-decoration: underline;
+  }
+  .drag-drop-container {
+    width: 90%;
+    max-width: 800px;
     margin: auto;
   }
 </style>
@@ -51,7 +59,7 @@
     <LazyWrapper>
       <p in:fly={{ x:50, duration:900, delay:100 }}>
         The backend is currently undecided. I am most familiar with hosting via AWS S3 static web hosting,
-        though something simpler like netlify or vercel may be better for a simple static website
+        though something simpler like netlify, vercel, or github pages may be better for a simple static website
         like this one. No database or CICD is currently planned to be employed.
       </p>
     </LazyWrapper>
@@ -59,10 +67,17 @@
     <LazyWrapper>
       <p in:fly={{ x:-50, duration:900, delay:100 }}>
         If you would like to see further demonstrations of my capacity as a developer, please feel free
-        to visit my github. I hope you enjoy my website!
+        to visit <a class="link" href="https://github.com/sinsinkun" target="_blank">my github</a>, 
+        or take a look at the <a class="link" href="/projects">projects</a> page. I hope you enjoy my website!
       </p>
     </LazyWrapper>
-    <br />
+    <br /><br /><br />
+    <!-- Drag and drop -->
+    <LazyWrapper>
+      <div class="drag-drop-container" in:fly={{ x:50, duration:900, delay:100 }}>
+        <DragDrop />
+      </div>
+    </LazyWrapper>
     <!-- TODO: more content -->
   {/if}
 </div>

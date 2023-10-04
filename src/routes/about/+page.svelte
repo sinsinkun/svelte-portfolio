@@ -17,7 +17,7 @@
   }
   p {
     width: 90%;
-    max-width: 700px;
+    max-width: 800px;
     margin: auto;
   }
   .section-1 {

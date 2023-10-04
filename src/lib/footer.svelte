@@ -56,7 +56,7 @@
     <div class="col-1">
       <h2>Chang Xiao</h2>
       <p>Written in Svelte & SvelteKit</p>
-      <p>Copyright 2023</p>
+      <p>Last updated: October 2023</p>
     </div>
     <!-- Links -->
     <div class="col-2">
@@ -69,7 +69,10 @@
     </div>
     <!-- ??? -->
     <div class="col-3">
-      Col 3
+      Source code available 
+        <a style="text-decoration:underline" href="https://github.com/sinsinkun/svelte-portfolio" target="_blank">
+          here
+        </a>
     </div>
   </div>
 </footer>

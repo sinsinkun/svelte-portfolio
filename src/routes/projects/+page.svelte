@@ -17,7 +17,7 @@
   }
   p {
     width: 90%;
-    max-width: 700px;
+    max-width: 800px;
     margin: auto;
   }
   table {
@@ -45,13 +45,9 @@
       Projects
     </h1>
     <p in:fly={{ x:50, duration:900 }}>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-      nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-      reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-      pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
-      culpa qui officia deserunt mollit anim id est laborum.
+      Listed below are some of the personal projects I've worked on in the past. Unfortunately the bulk of
+      the work that I've done are not publicly available, but I hope that these projects provide some insight
+      into my abilities as a web developer, and software engineer in general.
     </p>
     <br />
     <LazyWrapper>
@@ -67,15 +63,19 @@
         <!-- Body -->
         <tr>
           <td>Node</td>
-          <td>Examples</td>
+          <td>
+            <a href="https://github.com/sinsinkun/DiscordBot" target="_blank">
+              Custom discord bot
+            </a>
+          </td>
         </tr>
         <tr>
           <td>Rust</td>
-          <td>Examples</td>
-        </tr>
-        <tr>
-          <td>C#</td>
-          <td>Examples</td>
+          <td>
+            <a href="https://github.com/sinsinkun/excel-to-csv-splitter" target="_blank">
+              Excel to csv converter
+            </a>
+          </td>
         </tr>
       </table>
     </LazyWrapper>
@@ -93,15 +93,30 @@
         <!-- Body -->
         <tr>
           <td>React</td>
-          <td>Examples</td>
+          <td>
+            <div>
+              <a href="https://github.com/sinsinkun/react-website" target="_blank">
+                Old portfolio website
+              </a>
+            </div>
+            <div>
+              <a href="https://github.com/sinsinkun/React-SocketIO" target="_blank">
+                Instant messaging app
+              </a>
+            </div>
+          </td>
         </tr>
         <tr>
           <td>NextJS</td>
-          <td>Examples</td>
+          <td>(No publicly available repositories)</td>
         </tr>
         <tr>
           <td>Svelte</td>
-          <td>Examples</td>
+          <td>
+            <a href="https://github.com/sinsinkun/svelte-portfolio" target="_blank">
+              New portfolio website
+            </a>
+          </td>
         </tr>
       </table>
     </LazyWrapper>

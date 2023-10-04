@@ -41,7 +41,8 @@
     --color-2: rgb(59, 196, 238);
     --color-3: rgb(40, 97, 182);
     --color-4: rgb(211, 44, 128);
-    --color-5: rgb(10, 10, 10);
+    --color-5: rgb(163, 26, 111);
+    --color-6: rgb(10, 10, 10);
     --color-warn: rgb(245, 184, 71);
     --color-error: rgb(206, 39, 39);
   }
@@ -54,10 +55,11 @@
     --bg-color-5: rgb(68, 68, 68);
     --color-1: rgb(0,0,0);
     --color-1-50: rgba(0,0,0,0.5);
-    --color-2: rgb(23, 15, 134);
+    --color-2: rgb(41, 31, 177);
     --color-3: rgb(57, 112, 214);
     --color-4: rgb(119, 16, 16);
-    --color-5: rgb(196, 196, 196);
+    --color-5: rgb(184, 18, 18);
+    --color-6: rgb(245, 245, 245);
   }
 
   /* Remove header margins by default */
@@ -66,10 +68,10 @@
   }
 
   /* Remove underlines for links by default */
-  :global(a:link) { text-decoration: none; color: inherit; }
-  :global(a:visited) { text-decoration: none; color: inherit; }
-  :global(a:hover) { text-decoration: none; color: inherit; }
-  :global(a:active) { text-decoration: none; color: inherit; }
+  :global(a:link) { text-decoration: none; color: var(--color-1); }
+  :global(a:visited) { text-decoration: none; color: var(--color-1); }
+  :global(a:hover) { text-decoration: none; color: var(--color-2); }
+  :global(a:active) { text-decoration: none; color: var(--color-3); }
 
   /* Custom scrollbar */
   /* width */
