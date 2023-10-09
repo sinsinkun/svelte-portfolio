@@ -12,13 +12,13 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
-      - name: Build release version
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-      - run: npm run build
+      - name: Build release version
+        run: npm run build
       - name: Deploy to gh pages
         uses: actions/deploy-pages@v2
