@@ -3,6 +3,9 @@ run-name: Triggered by @${{github.actor}}
 on:
   push:
     branches: [ 'main' ]
+permissions:
+  id-token: write
+  contents: read
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
