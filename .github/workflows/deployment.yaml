@@ -7,11 +7,8 @@ permissions:
   id-token: write
   pages: write
   contents: read
-environment:
-  name: github-pages
-  url: ${{ steps.deployment.outputs.page_url }}
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo
@@ -24,6 +21,13 @@ jobs:
       - run: npm ci
       - name: Build release version
         run: npm run build
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to gh pages
         id: deployment
         uses: actions/deploy-pages@v2
