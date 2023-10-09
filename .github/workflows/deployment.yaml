@@ -1,0 +1,20 @@
+name: Deploy svelte project to gh pages
+run-name: Triggered by @${{github.actor}}
+on:
+  push:
+    branches:
+      - 'main'
+env:
+  # nothing here yet
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+      - name: Build release version
+        run: npm run build
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v2
+      - name: Deploy to gh pages
+        uses: actions/deploy-pages@v2
