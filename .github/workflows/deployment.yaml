@@ -5,7 +5,11 @@ on:
     branches: [ 'main' ]
 permissions:
   id-token: write
+  pages: write
   contents: read
+environment:
+  name: github-pages
+  url: ${{ steps.deployment.outputs.page_url }}
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -21,4 +25,7 @@ jobs:
       - name: Build release version
         run: npm run build
       - name: Deploy to gh pages
+        id: deployment
         uses: actions/deploy-pages@v2
+        with:
+          artifact_name: build
