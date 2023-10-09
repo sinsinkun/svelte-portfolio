@@ -37,13 +37,13 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: page
-          path: .
+          path: svelte-portfolio
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: /svelte-portfolio
+          path: svelte-portfolio
       - name: Deploy to gh pages
         id: deployment
         uses: actions/deploy-pages@v2
