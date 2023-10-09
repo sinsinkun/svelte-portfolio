@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { fly } from "svelte/transition";
+  import { base } from "$app/paths";
 
   import LazyWrapper from "$lib/lazyWrapper.svelte";
 
@@ -70,7 +71,7 @@
         </p>
         <br />
         <p>
-          A copy of my resume is available <a href="/assets/JingChang_Xiao_Resume.pdf"><u>here</u></a>.
+          A copy of my resume is available <a href="{base}/assets/JingChang_Xiao_Resume.pdf"><u>here</u></a>.
           It covers in more detail my educational and professional background, as well as other skills
           that may not be covered by this portfolio.
         </p>

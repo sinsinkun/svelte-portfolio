@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { fly } from "svelte/transition";
+  import { base } from "$app/paths";
 
   import { DragDrop, LazyWrapper } from "$lib";
 
@@ -68,7 +69,7 @@
       <p in:fly={{ x:-50, duration:900, delay:100 }}>
         If you would like to see further demonstrations of my capacity as a developer, please feel free
         to visit <a class="link" href="https://github.com/sinsinkun" target="_blank">my github</a>, 
-        or take a look at the <a class="link" href="/projects">projects</a> page. I hope you enjoy my website!
+        or take a look at the <a class="link" href="{base}/projects">projects</a> page. I hope you enjoy my website!
       </p>
     </LazyWrapper>
     <br /><br /><br />

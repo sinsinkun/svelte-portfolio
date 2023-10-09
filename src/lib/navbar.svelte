@@ -1,6 +1,7 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
   import { page } from '$app/stores';
+  import { base } from "$app/paths";
 
   import { FancyButton } from "$lib";
   import { viewType } from "./mediaQuery";
@@ -30,9 +31,9 @@
 
   // nav options
   let navOptions: NavOption[] = [
-    { url:"/", title: "Home", active:true },
-    { url:"/projects", title: "Projects", active:false },
-    { url:"/about", title: "About Me", active:false },
+    { url:base, title: "Home", active:true },
+    { url:base + "/projects", title: "Projects", active:false },
+    { url:base + "/about", title: "About Me", active:false },
   ]
   let sideMenuOpen = false;
 
@@ -153,9 +154,9 @@
   <h3 class="title">Web Portfolio</h3>
   <button class="theme-btn" on:click={toggleTheme}>
     {#if theme === 'light'}
-      <img height="50%" src="/icons/moon.svg" alt="moon icon" />
+      <img height="50%" src="{base}/icons/moon.svg" alt="moon icon" />
     {:else}
-      <img height="50%" src="/icons/sun.svg" alt="sun icon" />
+      <img height="50%" src="{base}/icons/sun.svg" alt="sun icon" />
     {/if}
     
   </button>
