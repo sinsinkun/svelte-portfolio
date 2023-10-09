@@ -52,7 +52,7 @@
     </h1>
     <div class="section-1" in:fly={{ x:50, duration:900, delay:100 }}>
       <div class="img-c">
-        <img width="100%" src="/assets/profile.jpg" alt="head shot"/>
+        <img width="100%" src="{base}/assets/profile.jpg" alt="head shot"/>
       </div>
       <div>
         <p>

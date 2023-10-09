@@ -37,7 +37,7 @@
 
 <div class="content-root">
   {#if loaded}
-    <img src="/icons/sinsin_v3.png" alt="logo" />
+    <img src="{base}/icons/sinsin_v3.png" alt="logo" />
     <br />
     <h1 in:fly={{ x:-50, duration:900 }}>
       Introduction

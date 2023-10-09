@@ -176,13 +176,13 @@
     <FancyButton class="menu-icon-container" onClick={toggleSideMenu}>
       {#if theme === 'light'}
         <img 
-          src="icons/menu-hamburger-black.svg" 
+          src="{base}/icons/menu-hamburger-black.svg" 
           alt="hamburger menu"
           class="menu-icon"
         />
       {:else}
         <img 
-          src="icons/menu-hamburger.svg" 
+          src="{base}/icons/menu-hamburger.svg" 
           alt="hamburger menu"
           class="menu-icon"
         />
