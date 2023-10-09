@@ -1,3 +1,7 @@
+<script lang="ts">
+  import { base } from '$app/paths';
+</script>
+
 <style>
   footer {
     background-color: var(--bg-color-2);
@@ -61,9 +65,9 @@
     <!-- Links -->
     <div class="col-2">
       <div class="grid">
-        <h3><a href="/">Home</a></h3>
-        <h3><a href="/projects">Projects</a></h3>
-        <h3><a href="/about">About</a></h3>
+        <h3><a href="{base}">Home</a></h3>
+        <h3><a href="{base}/projects">Projects</a></h3>
+        <h3><a href="{base}/about">About</a></h3>
         <h3><a href="mailto:chang.x1994@gmail.com">Contact Me</a></h3>
       </div>
     </div>
