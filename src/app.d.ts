@@ -7,6 +7,13 @@ declare global {
 		// interface PageData {}
 		// interface Platform {}
 	}
+
+	// for navbar options
+	interface NavOption {
+		url: string,
+		title: string,
+		active: boolean,
+	}
 }
 
 export {};

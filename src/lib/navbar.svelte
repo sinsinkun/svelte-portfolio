@@ -22,13 +22,6 @@
     }
   })
 
-  // typescript interfaces
-  interface NavOption {
-    url: string,
-    title: string,
-    active: boolean,
-  }
-
   // nav options
   let navOptions: NavOption[] = [
     { url:base + "/", title: "Home", active:true },
