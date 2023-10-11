@@ -1,9 +1,8 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
   import { fly } from "svelte/transition";
   import { base } from "$app/paths";
-
-  import { DragDrop, LazyWrapper } from "$lib";
+  import { LazyWrapper } from "$lib";
 
   // play animation on page load
   let loaded = false;
@@ -23,11 +22,6 @@
   }
   .link {
     text-decoration: underline;
-  }
-  .drag-drop-container {
-    width: 90%;
-    max-width: 800px;
-    margin: auto;
   }
 </style>
 
@@ -59,9 +53,11 @@
     <br />
     <LazyWrapper>
       <p in:fly={{ x:50, duration:900, delay:100 }}>
-        The backend is currently undecided. I am most familiar with hosting via AWS S3 static web hosting,
-        though something simpler like netlify, vercel, or github pages may be better for a simple static website
-        like this one. No database or CICD is currently planned to be employed.
+        This website is hosted on github pages. Although I am most familiar with hosting via AWS S3 
+        static web hosting, something simpler like netlify, vercel, or github pages is better suited 
+        for a simple static website like this one. Since I require no database connections or any
+        sensitive data to be sent to the client, github pages was the simplest solution. CICD is 
+        handled through github actions.
       </p>
     </LazyWrapper>
     <br />
@@ -73,12 +69,6 @@
       </p>
     </LazyWrapper>
     <br /><br /><br />
-    <!-- Drag and drop -->
-    <LazyWrapper>
-      <div class="drag-drop-container" in:fly={{ x:50, duration:900, delay:100 }}>
-        <DragDrop />
-      </div>
-    </LazyWrapper>
     <!-- TODO: more content -->
   {/if}
 </div>

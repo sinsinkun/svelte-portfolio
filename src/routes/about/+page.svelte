@@ -2,8 +2,7 @@
   import { onMount } from "svelte";
   import { fly } from "svelte/transition";
   import { base } from "$app/paths";
-
-  import LazyWrapper from "$lib/lazyWrapper.svelte";
+  import { LazyWrapper } from "$lib";
 
   // play animation on page load
   let loaded = false;

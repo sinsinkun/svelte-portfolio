@@ -1,8 +1,9 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
   import { fly } from "svelte/transition";
+  import { base } from "$app/paths";
 
-  import LazyWrapper from "$lib/lazyWrapper.svelte";
+  import { LazyWrapper } from "$lib";
 
   // play animation on page load
   let loaded = false;
@@ -19,19 +20,44 @@
     width: 90%;
     max-width: 800px;
     margin: auto;
+    margin-bottom: 8px;
   }
-  table {
-    margin: auto;
-    border-collapse: collapse;
+  a {
+    text-decoration: underline;
   }
-  table th {
-    border: 1px solid var(--color-1-50);
-    border-bottom-width: 3px;
-    padding: 0.2em 1em;
+  .project {
+    width: inherit;
+    text-align: left;
   }
-  table td {
-    border: 1px solid var(--color-1-50);
-    padding: 0.2em 1em;
+  .project h3 {
+    margin-bottom: 8px;
+    @media (max-width: 900px) {
+      text-align: center;
+    }
+  }
+  .project .info {
+    display: flex;
+    width: inherit;
+    @media (max-width: 900px) {
+      flex-wrap: wrap;
+    }
+  }
+  .project .preview {
+    min-width: 250px;
+    max-width: 350px;
+    min-height: 250px;
+    height: fit-content;
+    padding-bottom: 8px;
+
+    @media (max-width: 900px) {
+      margin: auto;
+    }
+  }
+  .project .preview img {
+    width: 100%;
+  }
+  .project .description {
+    flex-grow: 1;
   }
 </style>
 
@@ -50,119 +76,152 @@
       into my abilities as a web developer, and software engineer in general.
     </p>
     <br />
+    <!-- Suika game -->
     <LazyWrapper>
-      <h3 in:fly={{ x:-50, duration:900, delay:100 }}>
-        Native OS
-      </h3>
-      <table in:fly={{ x:50, duration:900, delay:100 }}>
-        <!-- Header -->
-        <tr>
-          <th>Framework</th>
-          <th>Examples</th>
-        </tr>
-        <!-- Body -->
-        <tr>
-          <td>Node</td>
-          <td>
-            <a href="https://github.com/sinsinkun/DiscordBot" target="_blank">
-              Custom discord bot
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td>Rust</td>
-          <td>
-            <a href="https://github.com/sinsinkun/excel-to-csv-splitter" target="_blank">
-              Excel to csv converter
-            </a>
-          </td>
-        </tr>
-      </table>
+      <div class="project" in:fly={{ x:-50, duration:900, delay:100 }}>
+        <h3>Suika Game Clone</h3>
+        <div class="info">
+          <div class="preview">
+            <img src="{base}/assets/suika-clone.png" alt="suika game clone" />
+          </div>
+          <div class="description">
+            <p>
+              <span><b>Language: Rust</b></span> -
+              <span><b>Framework: Bevy</b></span>
+            </p>
+            <p>
+              This is a small project I threw together over a long weekend. It's a clone of a 
+              popular game on the Switch that is only available in Japan (as of the time of this
+              writing). I was inspired by seeing other people making their own versions, so I
+              decided to give it a shot myself.
+            </p>
+            <p>
+              Through developing this game, I learned a lot about the Bevy game engine and the 
+              ideas behind ECS systems as a whole. It was originally built as a native app for 
+              windows, but I later decided to also compile it into wasm and host it through 
+              github pages so it could be played on mobile devices. Give it a try!
+            </p>
+            <br />
+            <p> Live link: 
+              <a href="https://sinsinkun.github.io/suika-clone" target="_blank">
+                https://sinsinkun.github.io/suika-clone
+              </a>
+            </p>
+            <p> Github link:
+              <a href="https://github.com/sinsinkun/suika-clone" target="_blank">
+                https://github.com/sinsinkun/suika-clone
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
     </LazyWrapper>
     <br />
+    <!-- Discord bot -->
     <LazyWrapper>
-      <h3 in:fly={{ x:-50, duration:900, delay:100 }}>
-        Frontend
-      </h3>
-      <table in:fly={{ x:50, duration:900, delay:100 }}>
-        <!-- Header -->
-        <tr>
-          <th>Framework</th>
-          <th>Examples</th>
-        </tr>
-        <!-- Body -->
-        <tr>
-          <td>React</td>
-          <td>
-            <div>
+      <div class="project" in:fly={{ x:50, duration:900, delay:100 }}>
+        <h3>Discord Bot</h3>
+        <div class="info">
+          <div class="preview">
+            <img src="{base}/assets/discord-bot.png" alt="discord bot commands list" />
+          </div>
+          <div class="description">
+            <p>
+              <span><b>Language: Javascript</b></span> -
+              <span><b>Framework: Discord SDK</b></span>
+            </p>
+            <p>
+              This is a discord bot that I made with a friend. It's primary purpose was to
+              keep track of emoji usage statics for a mutual server, but we expanded on its'
+              use cases by adding small utility commands, like rolling a die or unit conversion.
+              It has also been updated to take advantage of the autocomplete API that Discord
+              made available to third party bots, which will show a preview of available commands
+              and how to use them.
+            </p>
+            <p>
+              The bot utilizes AWS DynamoDB for saving emoji usage, and is hosted on an Oracle
+              Cloud server instance via Docker. Unfortunately there's no way to preview its 
+              capabilities without attaching your own bot instance to a discord server.
+            </p>
+            <br />
+            <p>Github link:
+              <a href="https://github.com/sinsinkun/Discordbot" target="_blank">
+                https://github.com/sinsinkun/Discordbot
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </LazyWrapper>
+    <br />
+    <!-- React portfolio -->
+    <LazyWrapper>
+      <div class="project" in:fly={{ x:50, duration:900, delay:100 }}>
+        <h3>React Portfolio (Old)</h3>
+        <div class="info">
+          <div class="preview">
+            <img src="{base}/assets/react-portfolio.png" alt="excel split script" />
+          </div>
+          <div class="description">
+            <p>
+              <span><b>Language: Javascript</b></span> -
+              <span><b>Framework: ReactJS</b></span>
+            </p>
+            <p>
+              Old portfolio written in React. Although this was written in 2021, my more
+              recent works in react are unfortunately private and cannot be shared externally.
+              It is still relatively well designed in my opinion, but may not reflect my 
+              current skill level as a front end developer (or contain any )
+            </p>
+            <p>
+              Unfortunately due to heroku shutting down their free tier, the projects
+              mentioned in this portfolio are no longer available. Their github repos however 
+              are still available for perusing, and a local version can be deployed to test
+              their functionality.
+            </p>
+            <br />
+            <p>Live link: (No longer available)</p>
+            <p>Github Link:
               <a href="https://github.com/sinsinkun/react-website" target="_blank">
-                Old portfolio website
+                https://github.com/sinsinkun/react-website
               </a>
-            </div>
-            <div>
-              <a href="https://github.com/sinsinkun/React-SocketIO" target="_blank">
-                Instant messaging app
-              </a>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>NextJS</td>
-          <td>(No publicly available repositories)</td>
-        </tr>
-        <tr>
-          <td>Svelte</td>
-          <td>
-            <a href="https://github.com/sinsinkun/svelte-portfolio" target="_blank">
-              New portfolio website
-            </a>
-          </td>
-        </tr>
-      </table>
+            </p>
+          </div>
+        </div>
+        
+      </div>
     </LazyWrapper>
     <br />
+    <!-- Excel to CSV converter -->
     <LazyWrapper>
-      <h3 in:fly={{ x:-50, duration:900, delay:100 }}>
-        Backend
-      </h3>
-      <table in:fly={{ x:50, duration:900, delay:100 }}>
-        <!-- Header -->
-        <tr>
-          <th>Framework</th>
-          <th>Examples</th>
-        </tr>
-        <!-- Body -->
-        <tr>
-          <td>Mongo API Route</td>
-          <td>Examples</td>
-        </tr>
-        <tr>
-          <td>SQL API Route</td>
-          <td>Examples</td>
-        </tr>
-      </table>
+      <div class="project" in:fly={{ x:-50, duration:900, delay:100 }}>
+        <h3>Excel to CSV Converter</h3>
+        <div class="info">
+          <div class="preview">
+            <img src="{base}/assets/excel-splitter.png" alt="excel split script" />
+          </div>
+          <div class="description">
+            <p>
+              <span><b>Language: Rust</b></span> -
+              <span><b>Framework: Windows CLI</b></span>
+            </p>
+            <p>
+              This is a quick native cli script written in Rust I threw together in a day.
+              It was intended for a very specific use case in my office, where excel sheets
+              submitted in .xlsx format would often need to be broken down into .csv files 
+              with 50 rows max.
+            </p>
+            <br />
+            <p>Github Link:
+              <a href="https://github.com/sinsinkun/excel-to-csv-splitter" target="_blank">
+                https://github.com/sinsinkun/excel-to-csv-splitter
+              </a>
+            </p>
+          </div>
+        </div>
+        
+      </div>
     </LazyWrapper>
     <br />
-    <LazyWrapper>
-      <h3 in:fly={{ x:-50, duration:900, delay:100 }}>
-        Architecture
-      </h3>
-      <table in:fly={{ x:50, duration:900, delay:100 }}>
-        <!-- Header -->
-        <tr>
-          <th>Framework</th>
-          <th>Examples</th>
-        </tr>
-        <!-- Body -->
-        <tr>
-          <td>Local Express Server</td>
-          <td>Examples</td>
-        </tr>
-        <tr>
-          <td>AWS Lambda</td>
-          <td>Examples</td>
-        </tr>
-      </table>
-    </LazyWrapper>
   {/if}
 </div>

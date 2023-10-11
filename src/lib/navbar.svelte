@@ -31,7 +31,7 @@
 
   // nav options
   let navOptions: NavOption[] = [
-    { url:base, title: "Home", active:true },
+    { url:base + "/", title: "Home", active:true },
     { url:base + "/projects", title: "Projects", active:false },
     { url:base + "/about", title: "About Me", active:false },
   ]

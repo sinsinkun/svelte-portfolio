@@ -65,7 +65,7 @@
     <!-- Links -->
     <div class="col-2">
       <div class="grid">
-        <h3><a href="{base}">Home</a></h3>
+        <h3><a href="{base}/">Home</a></h3>
         <h3><a href="{base}/projects">Projects</a></h3>
         <h3><a href="{base}/about">About</a></h3>
         <h3><a href="mailto:chang.x1994@gmail.com">Contact Me</a></h3>
