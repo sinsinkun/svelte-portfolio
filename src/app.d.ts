@@ -14,6 +14,11 @@ declare global {
 		title: string,
 		active: boolean,
 	}
+
+	interface Coordinates2D {
+		x: number,
+		y: number
+	}
 }
 
 export {};

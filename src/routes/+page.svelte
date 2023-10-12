@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import { fly } from "svelte/transition";
   import { base } from "$app/paths";
-  import { LazyWrapper } from "$lib";
+  import { LazyWrapper, DragDrop } from "$lib";
 
   // play animation on page load
   let loaded = false;
@@ -22,6 +22,11 @@
   }
   .link {
     text-decoration: underline;
+  }
+  .drag-drop {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
   }
 </style>
 
@@ -68,7 +73,31 @@
         or take a look at the <a class="link" href="{base}/projects">projects</a> page. I hope you enjoy my website!
       </p>
     </LazyWrapper>
-    <br /><br /><br />
+    <br /><br />
+    <h1 in:fly={{ x:50, duration:900 }}>Demos</h1>
+    <!-- Suika clone link -->
+    <LazyWrapper>
+      <div in:fly={{ x:50, duration:900, delay:100 }}>
+        <h3>Suika Game Clone</h3>
+        <p>
+          This is a small project I threw together over a long weekend. It's a clone of a 
+          popular game on the Switch that is only available in Japan (as of the time of this
+          writing). I was inspired by seeing other people making their own versions, so I
+          decided to give it a shot myself. You can play the WebAssembly compiled version
+          <a href="https://sinsinkun.github.io/suika-clone" target="_blank"><u>here</u></a>.
+        </p>
+        <br />
+        <img src="{base}/assets/suika-clone.png" alt="suika clone screenshot" width="50%" />
+      </div>
+    </LazyWrapper>
+    <br />
+    <!-- Drag and drop demo -->
+    <LazyWrapper>
+      <div class="drag-drop" in:fly={{ x:-50, duration:900, delay:100 }}>
+        <DragDrop />
+      </div>
+    </LazyWrapper>
+    <br />
     <!-- TODO: more content -->
   {/if}
 </div>

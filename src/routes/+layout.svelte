@@ -42,7 +42,8 @@
     --color-3: rgb(40, 97, 182);
     --color-4: rgb(211, 44, 128);
     --color-5: rgb(163, 26, 111);
-    --color-6: rgb(10, 10, 10);
+    --color-6: rgb(131, 12, 85);
+    --color-7: rgb(10, 10, 10);
     --color-warn: rgb(245, 184, 71);
     --color-error: rgb(206, 39, 39);
   }
@@ -59,7 +60,8 @@
     --color-3: rgb(57, 112, 214);
     --color-4: rgb(119, 16, 16);
     --color-5: rgb(184, 18, 18);
-    --color-6: rgb(245, 245, 245);
+    --color-6: rgb(214, 24, 24);
+    --color-7: rgb(245, 245, 245);
   }
 
   /* Remove header margins by default */

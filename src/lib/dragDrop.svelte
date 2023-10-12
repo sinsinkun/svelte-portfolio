@@ -1,8 +1,77 @@
-<script>
+<script lang="ts">
+  // non-render essential variables
+  let initCoord: Coordinates2D = {x:160, y:160};
+  let initClient: Coordinates2D = {x:0, y:0};
+  let finalCoord: Coordinates2D = {x:0, y:0};
 
+  let coords: Coordinates2D = {x:160, y:160};
+  let drag: boolean = false;
+
+  $: boxStyle = `transform:translate(${coords.x}px, ${coords.y}px)`;
+
+  function moveBoxTo(x:number, y:number) {
+    // restrict x
+    if (x < 0) x = 0;
+    else if (x > 320) x = 320;
+    // restrict y
+    if (y < 0) y=0;
+    if (y > 320) y=320;
+    // update target location
+    finalCoord.x = Math.round(x / 40) * 40;
+    finalCoord.y = Math.round(y / 40) * 40;
+    coords = {x:x, y:y}; 
+  }
+
+  function trackMouse(e: MouseEvent) {
+    let newCoordX = initCoord.x + e.clientX - initClient.x;
+    let newCoordY = initCoord.y + e.clientY - initClient.y;
+    console.log("move to coords", newCoordX, newCoordY);
+    moveBoxTo(newCoordX, newCoordY);
+  }
+
+  function trackTouch(e: TouchEvent) {
+    let newCoordX = initCoord.x + e.touches[0].clientX - initClient.x;
+    let newCoordY = initCoord.y + e.touches[0].clientY - initClient.y;
+    moveBoxTo(newCoordX, newCoordY);
+  }
+
+  function removeTrack() {
+    console.log("REMOVE TRACK");
+    coords = {x:finalCoord.x, y:finalCoord.y};
+    drag = false;
+    window.removeEventListener('mousemove', trackMouse);
+    window.removeEventListener('mouseup', removeTrack);
+    window.addEventListener('touchmove', trackTouch);
+    window.addEventListener('touchend', removeTrack);
+  }
+
+  function handleMouseDown(e: MouseEvent) {
+    if (!e.clientX || !e.clientY) return;
+    initClient = {x:e.clientX, y:e.clientY};
+    initCoord = coords;
+    drag = true;
+
+    // attach listeners
+    window.addEventListener('mousemove', trackMouse);
+    window.addEventListener('mouseup', removeTrack);
+  }
+
+  function handleTouchStart(e: TouchEvent) {
+    if (!e?.touches?.[0]) return;
+    initClient = {x:e.touches[0].clientX, y:e.touches[0].clientY};
+    initCoord = coords;
+    drag = true;
+
+    // attach listeners
+    window.addEventListener('touchmove', trackTouch);
+    window.addEventListener('touchend', removeTrack);
+  }
 </script>
 
 <style>
+  p {
+    margin: auto;
+  }
   .bg {
     position: relative;
     width: 400px;
@@ -23,6 +92,9 @@
   .box:hover {
     background-color: var(--color-5);
   }
+  .box:active {
+    background-color: var(--color-6);
+  }
 </style>
 
 <div>
@@ -33,7 +105,16 @@
     which is then used to calculate the position of the square, relative to its container. 
     The square is also configured to snap to the grid.
   </p>
+  <br />
   <div class="bg">
-    <div class="box" />
+    <div 
+      class="box"
+      style={boxStyle}
+      aria-pressed={drag}
+      role="button"
+      tabindex=0
+      on:mousedown={handleMouseDown}
+      on:touchstart={handleTouchStart}
+    />
   </div>
 </div>
