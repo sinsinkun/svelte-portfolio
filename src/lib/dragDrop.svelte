@@ -25,7 +25,6 @@
   function trackMouse(e: MouseEvent) {
     let newCoordX = initCoord.x + e.clientX - initClient.x;
     let newCoordY = initCoord.y + e.clientY - initClient.y;
-    console.log("move to coords", newCoordX, newCoordY);
     moveBoxTo(newCoordX, newCoordY);
   }
 
