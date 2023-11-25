@@ -57,6 +57,14 @@
     <br />
     <LazyWrapper>
       <p in:fly={{ x:50, duration:900, delay:100 }}>
+        If your browser supports WebGL, you will see a cube flying around in the background,
+        tracking the movements of the mouse. This is rendered through the WebGL API available on all
+        major browsers, using the ThreeJS WebGL library.
+      </p>
+    </LazyWrapper>
+    <br />
+    <LazyWrapper>
+      <p in:fly={{ x:-50, duration:900, delay:100 }}>
         This website is hosted on github pages. Although I am most familiar with hosting via AWS S3 
         static web hosting, something simpler like netlify, vercel, or github pages is better suited 
         for a simple static website like this one. Since I require no database connections or any
@@ -66,14 +74,14 @@
     </LazyWrapper>
     <br />
     <LazyWrapper>
-      <p in:fly={{ x:-50, duration:900, delay:100 }}>
+      <p in:fly={{ x:50, duration:900, delay:100 }}>
         If you would like to see further demonstrations of my capacity as a developer, please feel free
         to visit <a class="link" href="https://github.com/sinsinkun" target="_blank">my github</a>, 
         or take a look at the <a class="link" href="{base}/projects">projects</a> page. I hope you enjoy my website!
       </p>
     </LazyWrapper>
     <br /><br />
-    <h1 in:fly={{ x:50, duration:900 }}>Demos</h1>
+    <h1 in:fly={{ x:-50, duration:900 }}>Demos</h1>
     <!-- Suika clone link -->
     <LazyWrapper>
       <div in:fly={{ x:50, duration:900, delay:100 }}>

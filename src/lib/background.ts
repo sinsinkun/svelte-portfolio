@@ -15,6 +15,8 @@ mouseCoords.subscribe(coords => {
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(30, win.w/win.h, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
+const tanFOV = Math.tan( ( ( Math.PI / 180 ) * camera.fov / 2 ) );
+const initW = win.w;
 
 // THREE helper variables
 const objects: Array<THREE.Mesh> = [];
@@ -31,7 +33,6 @@ export function init(ref: HTMLDivElement) {
 
   // setup scene
   camera.position.z = 100;
-  scene.background = new THREE.Color(0x2a2a33);
   renderer.setSize(win.w, win.h);
   ref.appendChild( renderer.domElement );
 
@@ -51,6 +52,13 @@ function addCube() {
 
 function animate() {
   requestAnimationFrame( animate );
+  if (document?.body?.dataset?.theme === "light") {
+    scene.background = new THREE.Color(0xb6b6d6);
+  } else {
+    scene.background = new THREE.Color(0x2a2a33);
+  }
+  camera.aspect = win.w/win.h;
+  camera.updateProjectionMatrix();
   renderer.setSize(win.w, win.h);
   calcMousePos();
 

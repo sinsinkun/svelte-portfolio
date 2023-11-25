@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount, beforeUpdate } from "svelte";
+  import { onMount } from "svelte";
   import { Navbar, Footer } from "$lib";
   import { winW, winH, mouseCoords } from "$lib/mediaQuery";
   let bgInit: Function = () => null;
