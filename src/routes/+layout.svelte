@@ -16,12 +16,17 @@
     mouseCoords.set({ x: e.clientX, y: e.clientY });
   }
 
+  const touchListener = (e: TouchEvent) => {
+    mouseCoords.set({ x:e.touches[0].clientX, y:e.touches[0].clientY });
+  }
+
   onMount(() => {
     if (!window) return;
     winW.set(window.innerWidth || 0);
     winH.set(window.innerHeight || 0);
     window.addEventListener("resize", resizeListener);
     window.addEventListener("mousemove", mouseListener);
+    window.addEventListener("touchmove", touchListener);
     // import background
     (async () => {
       bgInit = (await import('../lib/background')).init;
@@ -32,6 +37,7 @@
     return () => {
       window.removeEventListener("resize", resizeListener);
       window.removeEventListener("mousemove", mouseListener);
+      window.removeEventListener("touchmove", touchListener);
     }
   })
 </script>
