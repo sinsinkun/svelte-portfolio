@@ -1,8 +1,12 @@
 import { writable, derived } from "svelte/store";
+import type { Writable } from "svelte/store";
 
 // custom media query handler
-export const winW = writable(0);
-export const winH = writable(0);
+export const winW: Writable<number> = writable(0);
+export const winH: Writable<number> = writable(0);
+
+// mouse tracker
+export const mouseCoords: Writable<Coordinates2D> = writable({ x:0, y:0 });
 
 // standardized breakpoints
 export const viewType = derived(winW, $w => {

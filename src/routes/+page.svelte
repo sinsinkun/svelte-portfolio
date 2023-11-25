@@ -51,8 +51,7 @@
         web design, including Frontend, Backend, and DevOps. This website was built using svelte and
         responsive, meaning that it will adapt the placement of page elements based on the screen size of 
         your device. The build version is statically generated for better load times, and scripting
-        is done in TypeScript to maintain type safety. All JS/TS functionality is custom built and 
-        all CSS is written by me.
+        is done in TypeScript to maintain type safety.
       </p>
     </LazyWrapper>
     <br />

@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onMount, beforeUpdate } from "svelte";
   import { Navbar, Footer } from "$lib";
-  import { winW, winH } from "$lib/mediaQuery";
+  import { winW, winH, mouseCoords } from "$lib/mediaQuery";
+  let bgInit: Function = () => null;
 
   // global media query listener
   const resizeListener = (e: UIEvent) => {
@@ -10,13 +11,27 @@
     winH.set(target?.innerHeight || 0);
   };
 
+  // global mouse tracker
+  const mouseListener = (e: MouseEvent) => {
+    mouseCoords.set({ x: e.clientX, y: e.clientY });
+  }
+
   onMount(() => {
     if (!window) return;
     winW.set(window.innerWidth || 0);
     winH.set(window.innerHeight || 0);
     window.addEventListener("resize", resizeListener);
+    window.addEventListener("mousemove", mouseListener);
+    // import background
+    (async () => {
+      bgInit = (await import('../lib/background')).init;
+      bgInit(document.getElementById('bg-container'));
+    })();
+
+    // handle cleanup
     return () => {
       window.removeEventListener("resize", resizeListener);
+      window.removeEventListener("mousemove", mouseListener);
     }
   })
 </script>
@@ -30,6 +45,8 @@
     margin: 0;
     font-family: "Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
     box-sizing: content-box;
+    background-color: var(--bg-color-3);
+    color: var(--color-1);
     /* Custom colors */
     --bg-color-1: rgb(26, 26, 27);
     --bg-color-2: rgb(35, 30, 30);
@@ -96,8 +113,6 @@
   /* Background for main body */
   .global-container {
     position: relative;
-    background-color: var(--bg-color-3);
-    color: var(--color-1);
     margin: 0;
     text-align: center;
     min-height: 100vh;
@@ -120,8 +135,16 @@
   :global(body[data-theme='light'] .content-root) {
     background: linear-gradient(#e6ecec22, #e6ecec88 200px, #e6ececee);
   }
+
+  /* WebGL background */
+  .bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
 </style>
 
+<div id="bg-container" class="bg"></div>
 <Navbar />
 <main class="global-container">
   <slot />

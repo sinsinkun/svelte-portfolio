@@ -19,6 +19,12 @@ declare global {
 		x: number,
 		y: number
 	}
+
+	interface ScreenData {
+		w: number,
+		h: number,
+		breakpoint: "xs" | "sm" | "md" | "lg" | "xl"
+	}
 }
 
 export {};
