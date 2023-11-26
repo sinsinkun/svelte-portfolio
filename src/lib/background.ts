@@ -15,48 +15,66 @@ mouseCoords.subscribe(coords => {
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(30, win.w/win.h, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
-const tanFOV = Math.tan( ( ( Math.PI / 180 ) * camera.fov / 2 ) );
-const initW = win.w;
 
 // THREE helper variables
 const objects: Array<THREE.Mesh> = [];
 const vec = new THREE.Vector3();
 const pos = new THREE.Vector3();
+const darkColor = new THREE.Color(0x2a2a33);
+const lightColor = new THREE.Color(0xb6b6d6);
+const useLightTheme = (): boolean => document?.body?.dataset?.theme === "light";
+let count = 0;
 
 export function init(ref: HTMLDivElement) {
-  if (!document) return;
+  if (!document || !ref) return;
   if (!WebGL.isWebGLAvailable()) {
     console.warn("No WebGL support");
     return;
   }
-  if (!ref) return;
 
   // setup scene
   camera.position.z = 100;
   renderer.setSize(win.w, win.h);
+  renderer.shadowMap.enabled = true;
   ref.appendChild( renderer.domElement );
+
+  const ambient = new THREE.AmbientLight(0x333333, 0.5);
+  const light = new THREE.PointLight(0xd0d0ff, 1, 1000, 0.1);
+  light.position.set(0, 0, 100);
+  scene.add(ambient, light);
 
   // add objects
   const cube = addCube();
-  objects.push(cube);
+  const plane = addPlane();
+  objects.push(cube, plane);
   animate();
 }
 
-function addCube() {
-  const geometry = new THREE.BoxGeometry(6, 6, 6);
-  const material = new THREE.MeshNormalMaterial();
+function addCube(): THREE.Mesh {
+  const geometry = new THREE.BoxGeometry(4, 4, 4);
+  const material = new THREE.MeshStandardMaterial({ color:0xddeeff });
   const cube = new THREE.Mesh( geometry, material );
-  scene.add( cube );
+  scene.add(cube);
   return cube;
 }
 
-function animate() {
-  requestAnimationFrame( animate );
-  if (document?.body?.dataset?.theme === "light") {
-    scene.background = new THREE.Color(0xb6b6d6);
-  } else {
-    scene.background = new THREE.Color(0x2a2a33);
-  }
+function addPlane(): THREE.Mesh {
+  const geometry = new THREE.PlaneGeometry(200, 200, 40, 40);
+  const material = new THREE.MeshStandardMaterial({ color:0xffffff, wireframe:true });
+  const plane = new THREE.Mesh(geometry, material);
+  // plane.position.z = -10;
+  scene.add(plane);
+  return plane;
+}
+
+async function animate() {
+  requestAnimationFrame(animate);
+
+  // toggle bg color based on theme
+  if (useLightTheme()) scene.background = lightColor;
+  else scene.background = darkColor;
+
+  // keep canvas size updated with window size
   camera.aspect = win.w/win.h;
   camera.updateProjectionMatrix();
   renderer.setSize(win.w, win.h);
@@ -66,10 +84,28 @@ function animate() {
   objects[0].rotation.x += 0.01;
   objects[0].rotation.y += 0.01;
   objects[0].position.set(pos.x, pos.y, pos.z);
+  clearVecs();
+
+  // handle object 1 (plane)
+  const position = objects[1].geometry.attributes.position;
+  for (let i=0; i < position.count; i++) {
+    vec.fromBufferAttribute(position, i);
+    position.setXYZ(
+      i, 
+      vec.x, 
+      vec.y, 
+      -10 + 2 * Math.sin(i + count * 0.0001)
+    );
+    position.needsUpdate = true;
+    count += 0.1;
+  }
+  if (count > 1000000) {
+    console.log("reset loop", count);
+    count = 0;
+  }
+
   // render new frame
   renderer.render( scene, camera );
-  // cleanup
-  clearVecs();
 }
 
 function calcMousePos(zPos:number = 0) {
