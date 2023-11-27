@@ -36,7 +36,6 @@
   }
 
   function removeTrack() {
-    console.log("REMOVE TRACK");
     coords = {x:finalCoord.x, y:finalCoord.y};
     drag = false;
     window.removeEventListener('mousemove', trackMouse);
