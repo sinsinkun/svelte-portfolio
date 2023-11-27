@@ -1,15 +1,16 @@
 import * as THREE from "three";
 import WebGL from 'three/addons/capabilities/WebGL.js';
-import { winW, winH, mouseCoords } from "./mediaQuery";
+import { winW, winH, mouseCoords, viewType } from "./mediaQuery";
 
 // media query variables
-let win = { w:0, h:0, x:0, y:0 };
+let win = { w:0, h:0, x:0, y:0, viewType:"" };
 winW.subscribe(x => win.w = x);
 winH.subscribe(x => win.h = x);
 mouseCoords.subscribe(coords => {
   win.x = coords.x;
   win.y = coords.y;
 })
+viewType.subscribe(x => win.viewType = x);
 
 // THREE variables
 const scene = new THREE.Scene();
@@ -19,12 +20,13 @@ const renderer = new THREE.WebGLRenderer();
 // THREE helper variables
 const vec = new THREE.Vector3();
 const pos = new THREE.Vector3();
-const darkColor = new THREE.Color(0x2a2a33);
+const darkColor = new THREE.Color(0x4a4a53);
 const lightColor = new THREE.Color(0xb6b6d6);
 const useLightTheme = (): boolean => document?.body?.dataset?.theme === "light";
 
 export function init(ref: HTMLDivElement) {
   if (!document || !ref) return;
+  if (win.viewType === "xs" || win.viewType === "sm") return;
   if (!WebGL.isWebGLAvailable()) {
     console.warn("No WebGL support");
     return;
@@ -36,10 +38,10 @@ export function init(ref: HTMLDivElement) {
   renderer.shadowMap.enabled = true;
   ref.appendChild( renderer.domElement );
 
-  const ambient = new THREE.AmbientLight(0x4f4f4f, 1);
-  const light = new THREE.PointLight(0xd0d0ff, 1, 100, 0.5);
+  const ambient = new THREE.AmbientLight(0x4f4f4f, 5);
+  const light = new THREE.PointLight(0xd0d0ff, 2000);
   light.castShadow = true;
-  light.position.set(0, 10, 25);
+  light.position.set(0, 10, 30);
 
   // add objects
   const cube = createCube();
@@ -53,18 +55,13 @@ function animate(): void {
   requestAnimationFrame(animate);
 
   // toggle bg color based on theme
-  const pLight = scene.children[1] as THREE.PointLight;
   const cube = scene.children[2] as THREE.Mesh;
   const plane = scene.children[3] as THREE.Mesh;
   const planeMat = plane.material as THREE.MeshStandardMaterial;
   if (useLightTheme()) {
-    scene.background = lightColor;
-    pLight.decay = 0.1;
-    planeMat.color.set(0xffffff);
+    planeMat.color.set(lightColor);
   } else {
-    scene.background = darkColor;
-    pLight.decay = 0.5;
-    planeMat.color.set(0xdfdfdf);
+    planeMat.color.set(darkColor);
   }
 
   // keep canvas size updated with window size
@@ -86,7 +83,7 @@ function animate(): void {
 // -- HELPER FUNCTIONS --
 function createCube(): THREE.Mesh {
   const geometry = new THREE.BoxGeometry(4, 4, 4);
-  const material = new THREE.MeshStandardMaterial({ color:0xabcaff });
+  const material = new THREE.MeshStandardMaterial({ color:0x6baaff });
   const cube = new THREE.Mesh( geometry, material );
   cube.castShadow = true;
   return cube;

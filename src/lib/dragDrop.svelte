@@ -29,6 +29,7 @@
   }
 
   function trackTouch(e: TouchEvent) {
+    e.preventDefault();
     let newCoordX = initCoord.x + e.touches[0].clientX - initClient.x;
     let newCoordY = initCoord.y + e.touches[0].clientY - initClient.y;
     moveBoxTo(newCoordX, newCoordY);
@@ -40,8 +41,8 @@
     drag = false;
     window.removeEventListener('mousemove', trackMouse);
     window.removeEventListener('mouseup', removeTrack);
-    window.addEventListener('touchmove', trackTouch);
-    window.addEventListener('touchend', removeTrack);
+    window.removeEventListener('touchmove', trackTouch);
+    window.removeEventListener('touchend', removeTrack);
   }
 
   function handleMouseDown(e: MouseEvent) {
@@ -56,6 +57,7 @@
   }
 
   function handleTouchStart(e: TouchEvent) {
+    e.preventDefault();
     if (!e?.touches?.[0]) return;
     initClient = {x:e.touches[0].clientX, y:e.touches[0].clientY};
     initCoord = coords;

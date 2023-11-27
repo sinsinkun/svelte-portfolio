@@ -59,7 +59,8 @@
       <p in:fly={{ x:50, duration:900, delay:100 }}>
         If your browser supports WebGL, you will see a cube flying around in the background,
         tracking the movements of the mouse. This is rendered through the WebGL API available on all
-        major browsers, using the ThreeJS WebGL library.
+        major browsers, using the ThreeJS WebGL library. This effect is disabled for mobile devices
+        due to the relatively high graphics requirements.
       </p>
     </LazyWrapper>
     <br />
