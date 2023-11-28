@@ -59,7 +59,7 @@
     --bg-color-3: rgb(42, 42, 51);
     --bg-color-4: rgb(136, 136, 136);
     --bg-color-5: rgb(187, 187, 187);
-    --bg-color-c: #1a1a1b88;
+    --bg-color-c: #1a1a1b66;
     --color-1: rgb(255,255,255);
     --color-1-50: rgba(255,255,255,0.5);
     --color-2: rgb(59, 196, 238);
@@ -78,7 +78,7 @@
     --bg-color-3: rgb(182, 182, 214);
     --bg-color-4: rgb(117, 116, 116);
     --bg-color-5: rgb(68, 68, 68);
-    --bg-color-c: #e6ecec44;
+    --bg-color-c: #e6ecec22;
     --color-1: rgb(0,0,0);
     --color-1-50: rgba(0,0,0,0.5);
     --color-2: rgb(41, 31, 177);

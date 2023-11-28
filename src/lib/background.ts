@@ -16,6 +16,7 @@ viewType.subscribe(x => win.viewType = x);
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(30, win.w/win.h, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
+const timer = new THREE.Clock();
 
 // THREE helper variables
 const vec = new THREE.Vector3();
@@ -41,6 +42,7 @@ export function init(ref: HTMLDivElement) {
   const ambient = new THREE.AmbientLight(0x4f4f4f, 5);
   const light = new THREE.PointLight(0xd0d0ff, 2000);
   light.castShadow = true;
+  light.shadow.mapSize = new THREE.Vector2(900, 900);
   light.position.set(0, 10, 30);
 
   // add objects
@@ -48,11 +50,11 @@ export function init(ref: HTMLDivElement) {
   const plane = createPlane();
   scene.add(ambient, light, cube, plane);
   animate();
-  console.log(scene.children);
 }
 
 function animate(): void {
   requestAnimationFrame(animate);
+  timer.getElapsedTime();
 
   // toggle bg color based on theme
   const cube = scene.children[2] as THREE.Mesh;
@@ -73,7 +75,11 @@ function animate(): void {
   // handle cube
   cube.rotation.x += 0.01;
   cube.rotation.y += 0.01;
-  cube.position.set(pos.x, pos.y, pos.z);
+  cube.position.set(
+    pos.x + 3 * Math.sin(2 * timer.elapsedTime),
+    pos.y + 3 * Math.cos(2 * timer.elapsedTime),
+    pos.z
+  );
   clearVecs();
 
   // render new frame
@@ -90,13 +96,9 @@ function createCube(): THREE.Mesh {
 }
 
 function createPlane(): THREE.Mesh {
-  const geometry = new THREE.PlaneGeometry(200, 200, 40, 40);
+  const geometry = new THREE.PlaneGeometry(200, 200);
   const material = new THREE.MeshStandardMaterial({ color:0xdfdfdf });
-  // const material = new THREE.ShaderMaterial({
-  //   uniforms: {},
-  //   vertexShader: planeVert,
-	//   fragmentShader: planeFrag
-  // });
+
   const plane = new THREE.Mesh(geometry, material);
   plane.receiveShadow = true;
   plane.position.z = -10;
