@@ -154,6 +154,42 @@
       </div>
     </LazyWrapper>
     <br />
+    <!-- Invoice Maker -->
+    <LazyWrapper>
+      <div class="project" in:fly={{ x:-50, duration:900, delay:100 }}>
+        <h3>Invoice Maker</h3>
+        <div class="info">
+          <div class="preview">
+            <img src="{base}/assets/invoice-maker.png" alt="invoice maker" />
+          </div>
+          <div class="description">
+            <p>
+              <span><b>Language: Javascript + Rust</b></span> -
+              <span><b>Framework: Tauri</b></span>
+            </p>
+            <p>
+              This is a native app, built using a hybrid Web-Native OS system on the Tauri framework.
+              Tauri launches a small rust based local server, through which it serves a stripped down
+              web framework to display the JS/HTML based GUI layer. This hybrid system allows you to 
+              take advantage of Native level efficiency by performing complex tasks using Rust, but 
+              still using the quick to iterate web client for easy GUI generation.
+            </p>
+            <p>
+              This small app allows you to build and preview an invoice in real time, which can be exported
+              as a png. The first version was built in half a day, to meet personal demands. 
+            </p>
+            <br />
+            <p>Github Link:
+              <a href="https://github.com/sinsinkun/invoice-maker" target="_blank">
+                https://github.com/sinsinkun/invoice-maker
+              </a>
+            </p>
+          </div>
+        </div>
+        
+      </div>
+    </LazyWrapper>
+    <br />
     <!-- React portfolio -->
     <LazyWrapper>
       <div class="project" in:fly={{ x:50, duration:900, delay:100 }}>
@@ -184,37 +220,6 @@
             <p>Github Link:
               <a href="https://github.com/sinsinkun/react-website" target="_blank">
                 https://github.com/sinsinkun/react-website
-              </a>
-            </p>
-          </div>
-        </div>
-        
-      </div>
-    </LazyWrapper>
-    <br />
-    <!-- Excel to CSV converter -->
-    <LazyWrapper>
-      <div class="project" in:fly={{ x:-50, duration:900, delay:100 }}>
-        <h3>Excel to CSV Converter</h3>
-        <div class="info">
-          <div class="preview">
-            <img src="{base}/assets/excel-splitter.png" alt="excel split script" />
-          </div>
-          <div class="description">
-            <p>
-              <span><b>Language: Rust</b></span> -
-              <span><b>Framework: Windows CLI</b></span>
-            </p>
-            <p>
-              This is a quick native cli script written in Rust I threw together in a day.
-              It was intended for a very specific use case in my office, where excel sheets
-              submitted in .xlsx format would often need to be broken down into .csv files 
-              with 50 rows max.
-            </p>
-            <br />
-            <p>Github Link:
-              <a href="https://github.com/sinsinkun/excel-to-csv-splitter" target="_blank">
-                https://github.com/sinsinkun/excel-to-csv-splitter
               </a>
             </p>
           </div>
