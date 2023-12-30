@@ -176,7 +176,9 @@
             </p>
             <p>
               This small app allows you to build and preview an invoice in real time, which can be exported
-              as a png. The first version was built in half a day, to meet personal demands. 
+              as a png or a pdf. The first version was built in half a day, to meet personal demands. 
+              The pdf is built by converting the position and sizing of HTML objects into page coordinates,
+              then added to a pdf object using the jsPDF library.
             </p>
             <br />
             <p>Github Link:
