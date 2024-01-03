@@ -10,7 +10,7 @@ uniform float u_time;
 
 // separate colors into 3 points that ripple outwards
 vec3 threePoints(vec2 coords) {
-  float center_1 = distance(vec2(0.5, 0.5), coords);
+  float center_1 = distance(vec2(0.5 + 0.05*sin(u_time), 0.5 + 0.05*cos(u_time)), coords);
   float center_2 = distance(vec2(0.2, 0.2), coords);
   float center_3 = distance(vec2(0.7, 0.7), coords);
 
