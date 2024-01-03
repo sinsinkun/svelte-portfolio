@@ -22,6 +22,19 @@ vec3 threePoints(vec2 coords) {
   return final_rgb;
 }
 
+vec3 threePoints(vec2 coords, vec2 mouse_coords) {
+  float center_1 = distance(vec2(0.3 + 0.05*sin(u_time), 0.5 + 0.05*cos(u_time)), coords);
+  float center_2 = distance(vec2(mouse_coords.x, 1.0 - mouse_coords.y), coords);
+  float center_3 = distance(vec2(0.7, 0.5), coords);
+
+  float final_r = 5.0 * (0.3 + sin(center_1 * 40.0)) * abs(cos(u_time + 20.0 * (coords.x - coords.y)));
+  float final_g = 5.0 * (-0.2 + sin(center_2 * 40.0)) * abs(cos(u_time + 20.0 * (coords.x + coords.y)));
+  float final_b = 5.0 * (0.6 + sin(center_3 * 40.0)) * abs(cos(u_time + 20.0 * (coords.x + coords.y)));
+  vec3 final_rgb = vec3(final_r, final_g, final_b);
+
+  return final_rgb;
+}
+
 // draw circles around point centered on mouse
 vec3 followMouse(vec2 coords, vec2 mouse_coords) {
   float delta_dist = distance(vec2(mouse_coords.x, 1.0 - mouse_coords.y), vec2(coords.x, coords.y));
@@ -40,7 +53,7 @@ void main() {
   vec2 mouse_coords = u_mouse.xy/u_resolution.xy;
 
   // generate rgb values from functions
-  vec3 final_rgb = threePoints(coords);
+  vec3 final_rgb = threePoints(coords, mouse_coords);
 
   // draw borders
   if (coords.x < 0.02 || coords.x > 0.98) {
