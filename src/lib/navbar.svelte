@@ -25,6 +25,7 @@
   // nav options
   let navOptions: NavOption[] = [
     { url:base + "/", title: "Home", active:true },
+    { url:base + "/canvas", title: "Canvas", active:false },
     { url:base + "/projects", title: "Projects", active:false },
     { url:base + "/about", title: "About Me", active:false },
   ]

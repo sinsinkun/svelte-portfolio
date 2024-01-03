@@ -1,9 +1,15 @@
 import * as THREE from "three";
 import WebGL from 'three/addons/capabilities/WebGL.js';
+import { writable } from "svelte/store";
+import type { Writable } from "svelte/store";
+
 import { winW, winH, mouseCoords, viewType } from "./mediaQuery";
+import customFrag from "../shaders/custom.frag?raw";
+import customVert from "../shaders/custom.vert?raw";
 
 // media query variables
-let win = { w:0, h:0, x:0, y:0, viewType:"" };
+export const isCanvas: Writable<boolean> = writable(false);
+let win = { w:0, h:0, x:0, y:0, viewType:"", isCanvas:false };
 winW.subscribe(x => win.w = x);
 winH.subscribe(x => win.h = x);
 mouseCoords.subscribe(coords => {
@@ -11,6 +17,7 @@ mouseCoords.subscribe(coords => {
   win.y = coords.y;
 })
 viewType.subscribe(x => win.viewType = x);
+isCanvas.subscribe(x => win.isCanvas = x);
 
 // THREE variables
 const scene = new THREE.Scene();
@@ -24,6 +31,22 @@ const pos = new THREE.Vector3();
 const darkColor = new THREE.Color(0x4a4a53);
 const lightColor = new THREE.Color(0xb6b6d6);
 const useLightTheme = (): boolean => document?.body?.dataset?.theme === "light";
+
+// custom material
+const uniforms = {
+  u_time: { type: "f", value: 1.0 },
+  u_resolution: { type: "v2", value: new THREE.Vector2() },
+  u_mouse: { type: "v2", value: new THREE.Vector2() },
+}
+const customMaterial = new THREE.ShaderMaterial({
+  uniforms: uniforms,
+  vertexShader: customVert,
+  fragmentShader: customFrag,
+});
+
+// default materials
+const cubeMaterial = new THREE.MeshStandardMaterial({ color:0x6baaff });
+const planeMaterial = new THREE.MeshStandardMaterial({ color:0xdfdfdf });
 
 export function init(ref: HTMLDivElement) {
   if (!document || !ref) return;
@@ -56,14 +79,17 @@ function animate(): void {
   requestAnimationFrame(animate);
   timer.getElapsedTime();
 
-  // toggle bg color based on theme
   const cube = scene.children[2] as THREE.Mesh;
   const plane = scene.children[3] as THREE.Mesh;
-  const planeMat = plane.material as THREE.MeshStandardMaterial;
-  if (useLightTheme()) {
-    planeMat.color.set(lightColor);
+
+  // toggle bg color based on theme
+  if (!win.isCanvas) {
+    plane.material = planeMaterial;
+    const planeMat = plane.material as THREE.MeshStandardMaterial;
+    if (useLightTheme()) planeMat.color.set(lightColor);
+    else planeMat.color.set(darkColor);
   } else {
-    planeMat.color.set(darkColor);
+    plane.material = customMaterial;
   }
 
   // keep canvas size updated with window size
@@ -82,6 +108,13 @@ function animate(): void {
   );
   clearVecs();
 
+  // update uniform values
+  uniforms.u_mouse.value.x = win.x;
+  uniforms.u_mouse.value.y = win.y;
+  uniforms.u_resolution.value.x = win.w;
+  uniforms.u_resolution.value.y = win.h;
+  uniforms.u_time.value = timer.elapsedTime;
+
   // render new frame
   renderer.render( scene, camera );
 }
@@ -89,15 +122,15 @@ function animate(): void {
 // -- HELPER FUNCTIONS --
 function createCube(): THREE.Mesh {
   const geometry = new THREE.BoxGeometry(4, 4, 4);
-  const material = new THREE.MeshStandardMaterial({ color:0x6baaff });
+  const material = cubeMaterial;
   const cube = new THREE.Mesh( geometry, material );
   cube.castShadow = true;
   return cube;
 }
 
 function createPlane(): THREE.Mesh {
-  const geometry = new THREE.PlaneGeometry(200, 200);
-  const material = new THREE.MeshStandardMaterial({ color:0xdfdfdf });
+  const geometry = new THREE.PlaneGeometry(160, 100);
+  const material = planeMaterial;
 
   const plane = new THREE.Mesh(geometry, material);
   plane.receiveShadow = true;
@@ -117,4 +150,8 @@ function calcMousePos(zPos:number = 0): void {
 function clearVecs(): void {
   vec.set(0,0,0);
   pos.set(0,0,0);
+}
+
+export function restartAnimation(): void {
+  requestAnimationFrame(animate);
 }
