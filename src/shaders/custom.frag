@@ -6,28 +6,50 @@ uniform vec2 u_resolution;
 uniform vec2 u_mouse;
 uniform float u_time;
 
+#define PI 3.14159265359
+
+// separate colors into 3 points that ripple outwards
+vec3 threePoints(vec2 coords) {
+  float center_1 = distance(vec2(0.5, 0.5), coords);
+  float center_2 = distance(vec2(0.2, 0.2), coords);
+  float center_3 = distance(vec2(0.7, 0.7), coords);
+
+  float final_r = 5.0 * (0.3 + sin(center_1 * 40.0)) * abs(cos(u_time + 20.0 * (coords.x + coords.y)));
+  float final_g = 5.0 * (-0.2 + sin(center_2 * 40.0)) * abs(cos(u_time + 20.0 * (coords.x + coords.y)));
+  float final_b = 5.0 * (0.6 + sin(center_3 * 40.0)) * abs(cos(u_time + 20.0 * (coords.x + coords.y)));
+  vec3 final_rgb = vec3(final_r, final_g, final_b);
+
+  return final_rgb;
+}
+
+// draw circles around point centered on mouse
+vec3 followMouse(vec2 coords, vec2 mouse_coords) {
+  float delta_dist = distance(vec2(mouse_coords.x, 1.0 - mouse_coords.y), vec2(coords.x, coords.y));
+
+  float final_r = 0.8 - abs(cos(delta_dist * 40.0)) + 0.4 * cos(2.0 * u_time);
+  float final_g = 0.8 - abs(sin(delta_dist * 40.0)) + 0.4 * cos(2.0 * u_time);
+  float final_b = 0.8 - abs(sin(delta_dist * 40.0)) + 0.4 * sin(2.0 * u_time);
+  vec3 final_rgb = vec3(final_r, final_g, final_b);
+
+  return final_rgb;
+}
+
 void main() {
   // normalize screen coordinates
   vec2 coords = gl_FragCoord.xy/u_resolution.xy;
   vec2 mouse_coords = u_mouse.xy/u_resolution.xy;
-  vec2 border = vec2(0.1, 0.9);
 
-  // split screen at mouse position
-  float final_r = smoothstep(0.48, 0.52, coords.x - mouse_coords.x + 0.5);
-  float final_g = smoothstep(0.48, 0.52, (coords.y + mouse_coords.y) / 2.0);
-  float final_b = 0.7 + 0.3 * sin(2.0 * u_time);
+  // generate rgb values from functions
+  vec3 final_rgb = threePoints(coords);
 
-  if (coords.x < 0.05 || coords.x > 0.95) {
-    final_r = final_b * 0.5;
-    final_g = final_b * 0.5;
-    // final_b = 0.0;
+  // draw borders
+  if (coords.x < 0.02 || coords.x > 0.98) {
+    final_rgb = vec3(0.2 + 0.2*abs(sin(u_time)));
   }
   if (coords.y < 0.1 || coords.y > 0.9) {
-    final_r = final_b * 0.5;
-    final_g = final_b * 0.5;
-    // final_b = 0.0;
+    final_rgb = vec3(0.2 + 0.2*abs(sin(u_time)));
   }
 
   // output color
-  gl_FragColor = vec4(final_r, final_g, final_b, 1.0);
+  gl_FragColor = vec4(final_rgb, 1.0);
 }
