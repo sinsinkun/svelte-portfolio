@@ -2,6 +2,12 @@
 precision mediump float;
 #endif
 
+/*
+--- threeJS provided preset variables ---
+uniform mat4 viewMatrix;
+uniform vec3 cameraPosition;
+*/
+
 uniform vec2 u_resolution;
 uniform vec2 u_mouse;
 uniform float u_time;

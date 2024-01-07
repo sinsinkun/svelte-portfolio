@@ -6,6 +6,7 @@ import type { Writable } from "svelte/store";
 import { winW, winH, mouseCoords, viewType } from "./mediaQuery";
 import customFrag from "../shaders/custom.frag?raw";
 import customVert from "../shaders/custom.vert?raw";
+import directionalLightFrag from "../shaders/directional_light.frag?raw";
 
 // media query variables
 export const isCanvas: Writable<boolean> = writable(false);
