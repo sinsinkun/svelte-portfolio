@@ -57,8 +57,9 @@
     <br />
     <LazyWrapper>
       <p in:fly={{ x:50, duration:900, delay:100 }}>
-        If your browser supports WebGL, you will see a cube flying around in the background,
-        tracking the movements of the mouse. This is rendered through the WebGL API available on all
+        If your browser supports WebGL, you will see a hexagonal terrain map in the background.
+        This terrain map is re-generated on every page navigation event, and can be viewed in better
+        detail from the canvas page. This is rendered through the WebGL API available on all
         major browsers, using the ThreeJS library. This effect is disabled for mobile devices
         due to the relatively high graphics requirements.
       </p>
