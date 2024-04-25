@@ -76,6 +76,44 @@
       into my abilities as a web developer, and software engineer in general.
     </p>
     <br />
+    <!-- Raylib 3D render -->
+    <LazyWrapper>
+      <div class="project" in:fly={{ x:-50, duration:900, delay:100 }}>
+        <h3>Custom 3D Rendering</h3>
+        <div class="info">
+          <div class="preview">
+            <img src="https://raw.githubusercontent.com/sinsinkun/raylib-3d/main/assets/screenshot.png" alt="raylib 3d screenshot" />
+          </div>
+          <div class="description">
+            <p>
+              <span><b>Language: C++</b></span> -
+              <span><b>Framework: Raylib</b></span>
+            </p>
+            <p>
+              This is a small learning project I put together to deepen my understanding of
+              rendering pipelines, materials, lighting, and shaders. Using the raylib library
+              to establish an OpenGL context and handle the window interface, I wrote my own
+              basic rendering pipeline, making use of basic materials and lights systems, as well
+              as some basic post processing to add light bloom.
+            </p>
+            <p>
+              Through developing this rendering pipeline, I learned a lot about graphics rendering,
+              GLSL shader creation, and the fundamentals of rendering 3D scenes such as MVP
+              transformations, custom shader variables, and the underlying math behind shading objects.
+              I also learned a bunch about C++ compilers, static vs dynamic links, and how to handle
+              library dependencies.
+            </p>
+            <br />
+            <p> Github link:
+              <a href="https://github.com/sinsinkun/raylib-3d" target="_blank">
+                https://github.com/sinsinkun/raylib-3d
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </LazyWrapper>
+    <br />
     <!-- Suika game -->
     <LazyWrapper>
       <div class="project" in:fly={{ x:-50, duration:900, delay:100 }}>
@@ -218,7 +256,6 @@
               their functionality.
             </p>
             <br />
-            <p>Live link: (No longer available)</p>
             <p>Github Link:
               <a href="https://github.com/sinsinkun/react-website" target="_blank">
                 https://github.com/sinsinkun/react-website

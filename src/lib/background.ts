@@ -52,14 +52,14 @@ export function init(ref: HTMLDivElement) {
   ref.appendChild( renderer.domElement );
 
   const ambient = new THREE.AmbientLight(0x4f4f4f, 5);
-  const light = new THREE.PointLight(0x70a0ff, 2000);
+  const light = new THREE.PointLight(0x3080ff, 2000);
   light.castShadow = true;
   light.shadow.mapSize = new THREE.Vector2(900, 900);
-  light.position.set(-15, 10, 15);
-  const light2 = new THREE.PointLight(0xffdfd0, 1000);
+  light.position.set(15, 30, -15);
+  const light2 = new THREE.PointLight(0xffdfd0, 4000);
   light2.castShadow = true;
   light2.shadow.mapSize = new THREE.Vector2(900, 900);
-  light2.position.set(15, 10, 15);
+  light2.position.set(-15, 30, 10);
 
   // add objects
   // const cube = createCube();
@@ -104,8 +104,10 @@ function animate(): void {
 
   // handle island
   island.rotation.y += 0.001;
-  water.rotation.y += 0.001;
-  water.scale.y = 1.5 + 0.5 * Math.sin(Date.now() / 1000);
+
+  // handle water
+  water.rotation.y += 0.0018;
+  water.scale.y = 1.6 + 0.4 * Math.sin(Date.now() / 1000);
 
   // replace island on new page load
   if (newPage) {
@@ -204,20 +206,31 @@ function createHex(h: number, px: number, py: number): THREE.CylinderGeometry {
 
 function createWater(): THREE.Mesh {
   // generate water
-  const geometry = new THREE.CylinderGeometry(21, 21, 2, 6);
-  const material = new THREE.MeshStandardMaterial({
-    color: 0x3366e6,
-    transparent: true,
-    roughness: 1,
-    metalness: 0.025,
-    opacity: 0.3,
-  });
+  const geometry = new THREE.CylinderGeometry(20, 20, 2, 50);
+  const material = createWaterMaterial();
   const mesh = new THREE.Mesh(geometry, material);
   mesh.receiveShadow = true;
   mesh.position.y = 2.0;
   mesh.scale.fromArray([1.5, 1.5, 1.5]);
   mesh.rotateX(0.8);
   return mesh;
+}
+
+function createWaterMaterial( rot?:number ): THREE.Material {
+  const texture = new THREE.TextureLoader().load('assets/water-normal.jpg');
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  if (rot) texture.rotation = rot;
+  const material = new THREE.MeshStandardMaterial({
+    color: 0x3366e6,
+    transparent: true,
+    roughness: 1,
+    metalness: 0.025,
+    opacity: 0.3,
+    normalMap: texture,
+    normalScale: new THREE.Vector2(3.0, 3.0),
+  });
+  return material;
 }
 
 function calcMousePos(zPos:number = 0): void {
