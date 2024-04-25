@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { fly } from "svelte/transition";
+  import { fly, blur } from "svelte/transition";
   import { base } from "$app/paths";
   import { LazyWrapper, DragDrop } from "$lib";
 
@@ -36,7 +36,9 @@
 
 <div class="content-root">
   {#if loaded}
-    <img src="{base}/icons/sinsin_v3.png" alt="logo" />
+    <div in:blur={{ amount:5, delay:-300, duration:1200 }}>
+      <img src="{base}/icons/sinsin_v3.png" alt="logo" />
+    </div>
     <br />
     <h1 in:fly={{ x:-50, duration:900 }}>
       Introduction
