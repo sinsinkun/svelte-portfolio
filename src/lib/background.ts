@@ -64,8 +64,9 @@ export function init(ref: HTMLDivElement) {
   // add objects
   // const cube = createCube();
   const plane = createPlane();
-  const circ = createIsland();
-  scene.add(ambient, light, light2, plane, circ);
+  const island = createIsland();
+  const water = createWater();
+  scene.add(ambient, light, light2, plane, water, island);
   animate();
 }
 
@@ -76,7 +77,8 @@ function animate(): void {
   // toggle bg color based on theme
   // const cube = scene.children[2] as THREE.Mesh;
   const plane = scene.children[3] as THREE.Mesh;
-  const island = scene.children[4] as THREE.Mesh;
+  const water = scene.children[4] as THREE.Mesh;
+  const island = scene.children[5] as THREE.Mesh;
   const planeMat = plane.material as THREE.MeshStandardMaterial;
   if (useLightTheme()) {
     planeMat.color.set(lightColor);
@@ -102,12 +104,15 @@ function animate(): void {
 
   // handle island
   island.rotation.y += 0.001;
+  water.rotation.y += 0.001;
+  water.scale.y = 1.5 + 0.5 * Math.sin(Date.now() / 1000);
 
   // replace island on new page load
   if (newPage) {
     const nisland = createIsland();
     scene.remove(island);
     scene.add(nisland);
+    water.rotation.y = 0;
     newPage = false;
   }
 
@@ -184,6 +189,7 @@ function createIsland(): THREE.Group {
 
   const island = new THREE.Group();
   island.add(mesh1, mesh2, mesh3, mesh4);
+  island.position.y = 2.5;
   island.scale.fromArray([1.5, 1.5, 1.5]);
   island.rotateX(0.8);
   return island;
@@ -194,6 +200,24 @@ function createHex(h: number, px: number, py: number): THREE.CylinderGeometry {
   // hexagonal displacement for x and z
   geo.translate((px + (py % 2) * 0.5) * 1.77, h * 0.5, py * 1.535);
   return geo;
+}
+
+function createWater(): THREE.Mesh {
+  // generate water
+  const geometry = new THREE.CylinderGeometry(21, 21, 2, 6);
+  const material = new THREE.MeshStandardMaterial({
+    color: 0x3366e6,
+    transparent: true,
+    roughness: 1,
+    metalness: 0.025,
+    opacity: 0.3,
+  });
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.receiveShadow = true;
+  mesh.position.y = 2.0;
+  mesh.scale.fromArray([1.5, 1.5, 1.5]);
+  mesh.rotateX(0.8);
+  return mesh;
 }
 
 function calcMousePos(zPos:number = 0): void {
