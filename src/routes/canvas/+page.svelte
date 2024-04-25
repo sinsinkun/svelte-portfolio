@@ -5,7 +5,7 @@
 </style>
 
 <svelte:head>
-  <title>Web Portfolio - About</title>
+  <title>Web Portfolio - Canvas</title>
 </svelte:head>
 
 <div class="content-root clear-bg">
