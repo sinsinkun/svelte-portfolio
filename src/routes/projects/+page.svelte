@@ -76,9 +76,51 @@
       into my abilities as a web developer, and software engineer in general.
     </p>
     <br />
-    <!-- Raylib 3D render -->
+    <!-- WebGPU Library -->
     <LazyWrapper>
       <div class="project" in:fly={{ x:-50, duration:900, delay:100 }}>
+        <h3>Custom WebGPU Library</h3>
+        <div class="info">
+          <div class="preview">
+            <img src="https://raw.githubusercontent.com/sinsinkun/vite-webgpu/main/public/screenshot.png" alt="custom webgpu library" />
+          </div>
+          <div class="description">
+            <p>
+              <span><b>Language: Typescript</b></span> -
+              <span><b>Framework: Vite</b></span>
+            </p>
+            <p>
+              This is a simple library I built for personal use that simplifies interacting
+              with the WebGPU API from a browser. Abstracts away setup configurations for the 
+              most common render pipeline setup and simplifies usage to only requiring a shader 
+              and vertex group inputs.
+            </p>
+            <p>
+              Through developing this library, I learned a lot about the WebGPU API interface,
+              the intricacies of setting up graphics pipelines, as well as more detailed looks 
+              at some shader basics that are typically provided by other graphics libraries,
+              such as setting up your own model/view/projection matrices, enabling transparency,
+              and enabling multi-sampling anti-aliasing.
+            </p>
+            <br />
+            <p> Live link: 
+              <a href="https://sinsinkun.github.io/vite-webgpu" target="_blank">
+                https://sinsinkun.github.io/vite-webgpu
+              </a>
+            </p>
+            <p> Github link:
+              <a href="https://github.com/sinsinkun/vite-webgpu" target="_blank">
+                https://github.com/sinsinkun/vite-webgpu
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </LazyWrapper>
+    <br />
+    <!-- Raylib 3D render -->
+    <LazyWrapper>
+      <div class="project" in:fly={{ x:50, duration:900, delay:100 }}>
         <h3>Custom 3D Rendering</h3>
         <div class="info">
           <div class="preview">
