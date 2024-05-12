@@ -57,16 +57,16 @@
         <p>
           I am a graduate of the University of Toronto Engineering department,
           with a Bachelor's degree in Mechanical Engineering. I have a deep interest in
-          software design and web development. Currently I am engaged as a full time
+          software design and web development. I was most recently engaged as a full time
           Team Lead/Lead Developer at BrokerPocket Inc., a PropTech startup company focused
-          on delivering a private network of off market listings to real estate professionals
+          on delivering a private network of off-market listings to real estate professionals
           in Canada.
         </p>
         <br />
         <p>
           Over these last 3 years, I have developed substantially as a developer, a manager,
-          and an architect. I have learned so much about not just the process of web development,
-          but also the challenges of organizing and leading a team.
+          and an architect. I have learned so much about not just the process of web development
+          and backend architecture design, but also the challenges of organizing and leading a team.
         </p>
         <br />
         <p>
