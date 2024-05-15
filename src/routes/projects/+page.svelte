@@ -82,7 +82,7 @@
         <h3>Custom WebGPU Library</h3>
         <div class="info">
           <div class="preview">
-            <img src="https://raw.githubusercontent.com/sinsinkun/vite-webgpu/main/public/screenshot.png" alt="custom webgpu library" />
+            <img src="https://raw.githubusercontent.com/sinsinkun/vite-webgpu/main/public/screenshot2.png" alt="custom webgpu library" />
           </div>
           <div class="description">
             <p>
