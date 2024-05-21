@@ -82,7 +82,10 @@
         <h3>Custom WebGPU Library</h3>
         <div class="info">
           <div class="preview">
-            <img src="https://raw.githubusercontent.com/sinsinkun/vite-webgpu/main/public/screenshot2.png" alt="custom webgpu library" />
+            <img
+              src="https://raw.githubusercontent.com/sinsinkun/webgpu-simplified/main/public/screenshot2.png"
+              alt="custom webgpu library"
+            />
           </div>
           <div class="description">
             <p>
@@ -104,13 +107,13 @@
             </p>
             <br />
             <p> Live link: 
-              <a href="https://sinsinkun.github.io/vite-webgpu" target="_blank">
-                https://sinsinkun.github.io/vite-webgpu
+              <a href="https://sinsinkun.github.io/webgpu-simplified" target="_blank">
+                https://sinsinkun.github.io/webgpu-simplified
               </a>
             </p>
             <p> Github link:
-              <a href="https://github.com/sinsinkun/vite-webgpu" target="_blank">
-                https://github.com/sinsinkun/vite-webgpu
+              <a href="https://github.com/sinsinkun/webgpu-simplified" target="_blank">
+                https://github.com/sinsinkun/webgpu-simplified
               </a>
             </p>
           </div>
