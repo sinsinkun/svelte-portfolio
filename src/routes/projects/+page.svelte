@@ -83,7 +83,7 @@
         <div class="info">
           <div class="preview">
             <img
-              src="https://raw.githubusercontent.com/sinsinkun/webgpu-simplified/main/public/screenshot2.png"
+              src="https://raw.githubusercontent.com/sinsinkun/webgpu-quickdraw/main/public/screenshot2.png"
               alt="custom webgpu library"
             />
           </div>
@@ -96,7 +96,8 @@
               This is a simple library I built for personal use that simplifies interacting
               with the WebGPU API from a browser. Abstracts away setup configurations for the 
               most common render pipeline setup and simplifies usage to only requiring a shader 
-              and vertex group inputs.
+              and vertex group inputs. I've released it as an Open Source Library on NPM as well,
+              so others also hopefully find it useful.
             </p>
             <p>
               Through developing this library, I learned a lot about the WebGPU API interface,
@@ -106,14 +107,19 @@
               and enabling multi-sampling anti-aliasing.
             </p>
             <br />
+            <p> NPM Package:
+              <a href="https://www.npmjs.com/package/webgpu-quickdraw" target="_blank">
+                https://www.npmjs.com/package/webgpu-quickdraw
+              </a>
+            </p>
             <p> Live link: 
-              <a href="https://sinsinkun.github.io/webgpu-simplified" target="_blank">
-                https://sinsinkun.github.io/webgpu-simplified
+              <a href="https://sinsinkun.github.io/webgpu-quickdraw" target="_blank">
+                https://sinsinkun.github.io/webgpu-quickdraw
               </a>
             </p>
             <p> Github link:
-              <a href="https://github.com/sinsinkun/webgpu-simplified" target="_blank">
-                https://github.com/sinsinkun/webgpu-simplified
+              <a href="https://github.com/sinsinkun/webgpu-quickdraw" target="_blank">
+                https://github.com/sinsinkun/webgpu-quickdraw
               </a>
             </p>
           </div>
